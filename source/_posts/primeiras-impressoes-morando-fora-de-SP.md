@@ -17,7 +17,7 @@ Graças a Deus optei pelo setor de tecnologia lá atrás, o que me deu esse pode
 
 Quando decidi sair de São Paulo e tentar a vida em Londrina, fiz isso porque queria qualidade de vida. SP sempre foi o sonho da minha vida. Foi lá que vi as bandas que sempre gostei, jogos do meu time, onde pude estudar em ótimas escolas...mas o preço pago para ter uma vida em tal metrópole é alto, e estava fazendo mal para minha saída.
 
-Na hora de balancear carreira e saúde, optei pelo segundo. Quis ficar mais perto dos amigos e família, focar no que realmente. Mas ao mesmo tempo, sem dissipar minha carreira.
+Na hora de balancear carreira e saúde, optei pela segunda. Quis ficar mais perto dos amigos e família, focar no que realmente importa na vida. Mas ao mesmo tempo, sem dissipar minha carreira.
 
 {% asset_img photo-1464537356976-89e35dfa63ee.jpeg %}
 
@@ -31,7 +31,7 @@ Claro, nem tudo são flores. Se foi difícil abrir mão de um emprego num dos ma
 
 Isso não é necessariamente ruim. Estou hoje em uma empresa recente de software que possui essa mentalidade voltada ao mercado. Tecnologias como React Native, Laravel e Jira constituem o seu ferramentário. Mas existem casos bem decepcionantes, o que acaba gerando a fuga de potenciais. 
 
-Além disso, se você já tem uma carreira consolidade, pode ser que aqui não seja tão atrativo em termos de salário e estabilidade. Como estou nos primeiros anos como desenvolvedor, as oportunidades que apareceram para mim aqui se adequaram ao meu momento de vida. Mas é sempre importante ter um planejamento antes de tomar uma decisão dessas.
+Além disso, se você já tem uma carreira consolidada, pode ser que aqui não seja tão atrativo em termos de salário e estabilidade. Como estou nos primeiros anos como desenvolvedor, as oportunidades que apareceram para mim aqui se adequaram ao meu momento de vida. Mas é sempre importante ter um planejamento antes de tomar uma decisão dessas.
 
 ## Dicas para mudar
 
