@@ -5,7 +5,7 @@
 # Site
 title: Blog do Danone
 subtitle: Desenvolvimento Web e Marketing Digital
-description: Aqui você verá dicas de PHP, JavaScript, bibliotecas, métricas e boas práticas em desenvolvimento e marketing digital
+description: Aqui você verá dicas de PHP, JavaScript, bibliotecas, métricas e boas práticas em desenvolvimento e marketing digital.
 keywords:
 author: Danilo Soares Cardoso
 language: pt-br
@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://danilocardoso.cc
+url: https://danilo.dev
 root: /blog
 permalink: :title/
 permalink_defaults:
