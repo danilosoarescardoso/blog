@@ -20,6 +20,7 @@ Abaixo fiz uma lista dos assuntos que estão no [documento de Skills Avaliadas](
 ### 1. [Entendendo conceitos de cloud](https://docs.microsoft.com/pt-br/learn/modules/principles-cloud-computing/3-benefits-of-cloud-computing) (15-20%)
 
 #### Benefícios e considerações ao usar cloud
+
 * Termos importantes
   * **high availabilty**: é o conceito que mensura o tanto de tempo que um site ou sistema fica de pé durante um determinado período
   * **scability**: habilidade que um sistema tem de se manter online de acordo com o uso dos usuários (quanto mais usuários, mais escalabilidade)
