@@ -51,3 +51,9 @@ deploy:
   type: git
   repo: 'https://github.com/danilosoarescardoso/blog'
   branch: gh-pages
+sitemap:
+  path: sitemap.xml
+  template: ./sitemap.xml
+  rel: false
+  tags: true
+  categories: true
