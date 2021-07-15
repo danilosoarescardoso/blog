@@ -1,13 +1,12 @@
-title: Blog do Danilo
-subtitle: Desenvolvimento Web e Marketing Digital
+title: Blog do Frois
+subtitle: Desenvolvimento Web e outras amenidades
 description: >-
-  Aqui você verá dicas de PHP, JavaScript, bibliotecas, métricas e boas práticas
-  em desenvolvimento e marketing digital.
+  Aqui falo sobre desenvolvimento web, computação em nuvem, arquitetura de soluções e outras amenidades.
 keywords: null
 author: Danilo Soares Cardoso
 language: pt-br
 timezone: null
-url: 'https://danilo.dev'
+url: 'https://danilocardoso.dev'
 root: /blog
 permalink: ':title/'
 permalink_defaults: null
@@ -22,7 +21,6 @@ skip_render: null
 new_post_name: ':title.md'
 default_layout: post
 titlecase: false
-external_link: true
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
