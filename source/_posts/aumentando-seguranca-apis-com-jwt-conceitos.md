@@ -39,11 +39,22 @@ O protocolo [OAuth 2.0](https://datatracker.ietf.org/doc/html/rfc6749), lançado
 
 Vale ressaltar que a comunicação no OAuth 2.0 é feita utilizando JSONs. Quando uma API é protegida com esse protocolo, as requisições precisam de um header do tipo *Authorization* com um JWT como valor.
 
+**[OIDC 1.0](https://www.linkedin.com/pulse/aspnet-core-jwt-bearer-token-claims-roles-policies-alex-tochetto/)**
+
+O OpenID Connect 1.0 é uma camada de identificação que fica no topo do protocolo OAuth 2.0. Ela permite validar um usuário através de autenticação em um servidor de autorização OAuth 2.0, bem como obter informações básicas de perfil desse usuário através de endpoints REST. Também permite que seja possível autenticar diferentes usando tipos de *clients* (web, mobile, etc). Para isso, existe uma série de especificações que definem alguns processos de como o OIDC deve ser implementado e funcionar, sendo alguns deles:
+
+1. **[Dynamic Client Registration (DCR)](https://openid.net/specs/openid-connect-registration-1_0.html)**: define padrões de como um client pode ser cadastrado via endpoints REST;
+2. **[Core](https://openid.net/specs/openid-connect-core-1_0.html)**: Define o funcionamento do OIDC e como a autenticação deve ser feita.
+3. **[Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html)**: descreve como clientes podem descobrir informações sobre provedores OpenID de forma dinâmica.
+
+{% asset_img oidc.png  [Figura 5 - OIDC 1.0 e suas particularidades] %}
+Figura 2 - OIDC 1.0 e suas particularidades
+
 ### JWT
 
 Os [JSON Web Tokens](https://datatracker.ietf.org/doc/html/rfc7519) - ou JWTs - são um meio de representação de autoridade que podem ser trafegados entre duas partes. São URL *safe*, o que significa que podem ser trafegados em URLs sem que haja problemas de *encoding*. As autoridades (*claims*) dentro do JWT são codificadas em um objeto JSON que é usado como *payload.* Esse payload pode ser assinado digitalmente (JWS) ou encriptado (JWE). Com isso é possível assinar digitalmente o payload, evitando que ele seja lido por qualquer um.
 
-### Grant Types
+## Grant Types
 
 São os tipos de autenticação possíveis de serem feitos. Cada tipo de autorização possui passos para que a autoridade de consumo seja consentida. Os tipos mais conhecidos são:
 
@@ -56,7 +67,7 @@ Esse *authorization code* é obtido através de um redirecionamento feito para o
 Ao retornar para o serviço que solicitou o *authorization code*, ele poderá chamar o servidor de autorização novamente, dessa vez solicitando um *access token*. Esse *access token*, conforme já falamos mais acima, é quem permitirá o acesso ao recurso desejado.
 
 {% asset_img auth_code.png  [Figura 2 - Fluxo de *authorization code*] %}
-Figura 2 - Fluxo de *authorization code*
+Figura 3 - Fluxo de *authorization code*
 
 
 **2. Client Credentials**
@@ -64,7 +75,7 @@ Figura 2 - Fluxo de *authorization code*
 Enquanto o fluxo de *authorization code* é feito para autorizar usuários, existe uma forma de autenticar aplicações, fluxo que alguns chamam de *machine to machine* (M2M). Esse método é usado quando não precisamos de um usuário específico. Para isso, é necessário que o cliente tenha sido cadastrado anteriormente no servidor de autorização. No momento do cadastro será gerado um *client_id* e um *client_secret*, parâmetros que serão usados para solicitar1 um *access token* diretamente, sem tantos redirecionamentos. 
 
 {% asset_img client_credentials.png  [Figura 3 - Fluxo de client credentials] %}
-Figura 3 - Fluxo de client credentials
+Figura 4 - Fluxo de client credentials
 
 
 **3. [JWT Bearer](https://datatracker.ietf.org/doc/html/rfc7523)**
@@ -77,18 +88,7 @@ Para que o servidor de autorização consiga validar o JWT assinado, é necessá
 
 
 {% asset_img jwt-bearer.png  [Figura 4 - Fluxo de JWT Bearer] %}
-Figura 4 - Fluxo de JWT Bearer
-
-**[4. OIDC 1.0](https://www.linkedin.com/pulse/aspnet-core-jwt-bearer-token-claims-roles-policies-alex-tochetto/)**
-
-O OpenID Connect 1.0 é uma camada de identificação que fica no topo do protocolo OAuth 2.0. Ela permite validar um usuário através de autenticação em um servidor de autorização OAuth 2.0, bem como obter informações básicas de perfil desse usuário através de endpoints REST. Também permite que seja possível autenticar diferentes usando tipos de *clients* (web, mobile, etc). Para isso, existe uma série de especificações que definem alguns processos de como o OIDC deve ser implementado e funcionar, sendo alguns deles:
-
-1. **[Dynamic Client Registration (DCR)](https://openid.net/specs/openid-connect-registration-1_0.html)**: define padrões de como um client pode ser cadastrado via endpoints REST;
-2. **[Core](https://openid.net/specs/openid-connect-core-1_0.html)**: Define o funcionamento do OIDC e como a autenticação deve ser feita.
-3. **[Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html)**: descreve como clientes podem descobrir informações sobre provedores OpenID de forma dinâmica.
-
-{% asset_img oidc.png  [Figura 5 - OIDC 1.0 e suas particularidades] %}
-Figura 5 - OIDC 1.0 e suas particularidades
+Figura 5 - Fluxo de JWT Bearer
 
 ---
 
