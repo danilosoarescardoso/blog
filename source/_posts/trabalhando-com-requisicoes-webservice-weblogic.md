@@ -1,7 +1,7 @@
 ---
 title: Testando requisições a Webservices SOAP no Weblogic
 date: 2020-04-26 02:02:27
-tags: weblogic, webservices, SOAP, xml, java
+tags: [weblogic, webservices, SOAP, xml, java]
 ---
 
 Sempre que trabalho com uma tecnologia, gosto de ler mais sobre ela e fazer experimentos. Quando trabalhamos com desenvolvimento, isso acaba sendo muito comum, aprender com a prática e o dia-a-dia. Um dos exemplos desse aprendizado que adquiri nos últimos meses foi trabalhando com algumas tecnologias novas na carreira.

@@ -1,7 +1,7 @@
 ---
 title: Músicas mais ouvidas em janeiro + fone novo
 date: 2022-02-13 19:05:40
-tags: musica, amenidades
+tags: [musica, amenidades]
 ---
 
 Sempre gostei de escrever sobre tudo e qualquer coisa mas nos últimos anos acabei focando apenas em textos técnicos, devido aos caminhos que a vida nos leva. Mas pensando em usar melhor esse espaço - e me inspirando nos textos não-técnicos feitos por Martin Fowler - resolvi arriscar um pouco e falar de coisas que gosto ou que estão na minha mente ultimamente.
