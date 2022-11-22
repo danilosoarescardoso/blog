@@ -1,10 +1,13 @@
 ---
 title: "APIs para Pessoas de Negócio: o que é necessário para construir APIs"
 date: 2022-11-22 15:04:17
-tags: [2022, tecnologia, API]
+tags: [2022, tecnologia, apis]
 ---
 
 Recentemente [fiz um texto introdutório ](https://danilocardoso.dev/blog/apis-pessoas-negocio-breve-introducao/) sobre como APIs podem ser entendidas por pessoas de negócio. No texto de hoje a ideia é trazer o que uma pessoa, equipe e empresa precisam ter para poderem criar suas primeiras APIs. Vale ressaltar que as ideias que trarei aqui são baseadas na experiência que tive em diferentes empresas e na literatura técnica e organizacional que tenho consumido nos últimos anos. Detalhes adicionais ou casos de uso diferentes precisam ser analisados com tempo e dedicação.
+
+{% asset_img lego.png %}
+Figura 1 - Quais peças são necessárias para montar uma API?
 
 ## Estratégia Corporativa de APIs
 Apesar de não ser estritamente necessário ter uma estratégia de APIs definida a nível corporativo para conseguir utiliza-las, é extremamente válido que sua empresa tenha uma [estratégia clara e definida para APIs](https://br.sensedia.com/post/como-a-estrategia-api-first-beneficia-negocios-de-solucoes-digitais). Isso porque APIs podem se tornar um problema quando são mal construídas, quando não possuem seu comportamento observado ao longo do tempo ou quando não são subaproveitadas.

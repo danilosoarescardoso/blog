@@ -1,5 +1,5 @@
 ---
-title: "APIs para Pessoas de Negócios: uma breve introdução"
+title: "APIs para Pessoas de Negócio: uma breve introdução"
 date: 2022-11-01 13:56:54
 tags: [tecnologia, apis, 2022]
 ---
