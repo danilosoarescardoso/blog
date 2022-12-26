@@ -4,9 +4,6 @@ date: 2022-12-20 17:21:27
 tags: [Open APIs, API REST, tecnologia, backend, 2022]
 ---
 
-{% asset_img path.png %}
-
-
 O Open Policy Agent, que [citei no blog há algumas semanas atrás](https://danilocardoso.dev/blog/centralizando-governanca-com-opa/), é uma ferramenta que permite a criação de políticas de forma centralizada, afim de gerenciar e validar diferentes aspectos de segurança das suas aplicações, seja de infra como arquitetura. Uma das validações que o OPA permite realizar é a de **contratos de API**.
 
 Validar contratos é um aspecto muito importante em uma estratégia de APIs porque garante que os critérios definidos pelo time de arquitetura e negócio estão sendo seguidos pelas pessoas desenvolvedoras. Uma API fora do padrão traz inúmeros problemas para instituições, como por exemplo:
@@ -15,7 +12,9 @@ Validar contratos é um aspecto muito importante em uma estratégia de APIs porq
 * **Débito técnico constante.** Uma API que já começa sem padrão tende a se tornar uma dor de cabeça para as equipes, já que inúmeros problemas podem ocorrer. Performance, disponibilidade e confiabilidade são apenas alguns exemplos de **[*ilities*](http://www.softwarearchitecturenotes.com/architecturerequirements.html)** que são impactados com APIs fora de um padrão técnico pré-estabelecido.  
 * **Problemas para integrar.** Os padrões de desenho para API existem para que qualquer empresa consiga integrar seus produtos através de um determinado padrão, entre tantos outros casos de uso. Quando os padrões de mercado não são seguidos, toda e qualquer integração vai exigir documentações adicionais, reuniões e refinamento de requisitos, já que aquela API pode ter sido desenhada e implementada de qualquer jeito possível. E acredite, existem muitas formas de escrever uma API quando não existe um padrão de mercado balizando as entregas. 
 
-## Como usar o Open Policy Agent
+{% asset_img path.png %}
+
+## Opções ao validar APIs
 
 Existem várias formas de validar o contrato de uma API. Uma das mais famosas é com o [Spectral](https://stoplight.io/open-source/spectral), ferramenta *open source* que permite definir uma série de políticas para suas APIs. O que vou mostrar nesse texto é como usar o OPA para validar os contratos de duas formas diferentes, mas é bom deixar claro que existem N outras alternativas no mercado.
 
