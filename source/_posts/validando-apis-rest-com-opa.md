@@ -12,7 +12,7 @@ Validar contratos é um aspecto muito importante em uma estratégia de APIs porq
 * **Débito técnico constante.** Uma API que já começa sem padrão tende a se tornar uma dor de cabeça para as equipes, já que inúmeros problemas podem ocorrer. Performance, disponibilidade e confiabilidade são apenas alguns exemplos de **[*ilities*](http://www.softwarearchitecturenotes.com/architecturerequirements.html)** que são impactados com APIs fora de um padrão técnico pré-estabelecido.  
 * **Problemas para integrar.** Os padrões de desenho para API existem para que qualquer empresa consiga integrar seus produtos através de um determinado padrão, entre tantos outros casos de uso. Quando os padrões de mercado não são seguidos, toda e qualquer integração vai exigir documentações adicionais, reuniões e refinamento de requisitos, já que aquela API pode ter sido desenhada e implementada de qualquer jeito possível. E acredite, existem muitas formas de escrever uma API quando não existe um padrão de mercado balizando as entregas. 
 
-{% asset_img path.png %}
+{% asset_img path.jpeg %}
 
 ## Opções ao validar APIs
 
