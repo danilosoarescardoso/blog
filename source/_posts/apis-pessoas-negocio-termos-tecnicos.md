@@ -2,6 +2,8 @@
 title: "APIs para Pessoas de Negócio: Termos técnicos essenciais"
 date: 2023-01-26 11:21:43
 tags: [2023, apis, produtos digitais, tecnologia]
+categories:
+- [gallery]
 ---
 
 Continuando a série de posts sobre APIs, trago hoje uma lista de termos mais usados e necessários para conhecer ao trabalhar com APIs. Vamos lá!
