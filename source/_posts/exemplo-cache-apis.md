@@ -4,7 +4,7 @@ date: 2023-04-18 12:18:24
 tags: [apis, cache, arquitetura]
 ---
 
-Recentemente fiz dois posts - depois incluo os links aqui - de quando usar e não usar cache em APIs. No texto de hoje mostro de forma simples como o cache pode ser usado em uma API. O link para o repositório pode ser [encontrado aqui](https://github.com/danilosoarescardoso/cache-python-example).
+Recentemente fiz dois posts sobre [quando usar](https://danilocardoso.dev/blog/quando-usar-cache-apis/) e [quando não usar](https://danilocardoso.dev/blog/quando-nao-usar-cache-apis/) cache em APIs. No texto de hoje mostro de forma simples como o cache pode ser usado em uma API. O link para o repositório pode ser [encontrado aqui](https://github.com/danilosoarescardoso/cache-python-example).
 
 Vamos lá!
 
