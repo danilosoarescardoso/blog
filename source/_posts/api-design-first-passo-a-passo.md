@@ -14,6 +14,8 @@ Para conseguirmos chegar a um contrato que atenda todas as partes, podemos segui
 
 ## Processo ADDR
 
+{% asset_img addr.png ADDR %}
+
 ADDR é um acrônimo que se refere a um processo comum na escrita e design de APIs. Ele é composto pelas seguintes etapas:
 
 * **Alinhar**: Garante o alinhamento entre os diferentes escopos envolvidos, como negócio, produto e tecnologia, fechando um entendimento de quais são os resultados esperados para o projeto.
@@ -29,11 +31,11 @@ ADDR é um acrônimo que se refere a um processo comum na escrita e design de AP
 Existem 7 fases, segundo James Higginbotham, para que o contrato de uma API seja feito:
 
 1. **Identificar capacidades digitais.** identificar as necessidades do cliente e resultados esperados, incluindo as respectivas capacidades digitais. 
-2. **Definir atividades.** expandir capacidades digitais para incluir um entendimento único e claro através de sessões de design. 
+2. **Definir atividades.** expandir capacidades digitais para incluir um entendimento único e claro das atividades necessárias para atingir os resultados esperados usando sessões colaborativas de design. 
 3. **Identificar fronteiras da API.** validar se já não existe alguma API que pode ser reutilizada e, no caso de necessidade de novas APIs, quais deverão ser criadas.
-4. **Modelar Perfis de API.** definir através de sessões de design qual o melhor perfil de API a ser utilizado, incluindo recursos e operações.
+4. **Modelar Perfis de API.** definir através de sessões colaborativas de design qual o melhor perfil de API a ser utilizado, incluindo recursos e operações.
 5. **Design de Alto nível da API.** Escolher um ou mais Perfis de API que serão usados e documentar os elementos de design de alto nível envolvidos.
-6. **Refino do Design.** Incluir feedback dos consumidores da API usando técnicas que busque a melhor experiência para o desenvolvedor
+6. **Refino do Design.** Incluir feedback dos consumidores da API usando técnicas que busquem a melhor experiência para o desenvolvedor.
 7. **Documentar a API.** finalizar a documentação da API, incluindo materiais para onboarding, testes e formas de acelerar a integração.
 
 Nos próximos textos aprofundarei em cada uma das etapas listadas acima.
