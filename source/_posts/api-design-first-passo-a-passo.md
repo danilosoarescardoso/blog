@@ -30,7 +30,7 @@ ADDR é um acrônimo que se refere a um processo comum na escrita e design de AP
 
 Existem 7 fases, segundo James Higginbotham, para que o contrato de uma API seja feito:
 
-1. **Identificar capacidades digitais.** identificar as necessidades do cliente e resultados esperados, incluindo as respectivas capacidades digitais. 
+1. [**Identificar capacidades digitais.**](https://danilocardoso.dev/blog/api-design-first-definindo-capacidades-digitais/) identificar as necessidades do cliente e resultados esperados, incluindo as respectivas capacidades digitais. 
 2. **Definir atividades.** expandir capacidades digitais para incluir um entendimento único e claro das atividades necessárias para atingir os resultados esperados usando sessões colaborativas de design. 
 3. **Identificar fronteiras da API.** validar se já não existe alguma API que pode ser reutilizada e, no caso de necessidade de novas APIs, quais deverão ser criadas.
 4. **Modelar Perfis de API.** definir através de sessões colaborativas de design qual o melhor perfil de API a ser utilizado, incluindo recursos e operações.
