@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://danilocardoso.dev/apis-pessoas-negocio-termos-tecnicos/</loc>
+    
+    <lastmod>2023-09-03</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://danilocardoso.dev/autenticando-apis-com-hmac/</loc>
     
     <lastmod>2023-08-07</lastmod>
@@ -171,13 +178,6 @@
   
   <url>
     <loc>https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/</loc>
-    
-    <lastmod>2023-07-14</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://danilocardoso.dev/apis-pessoas-negocio-termos-tecnicos/</loc>
     
     <lastmod>2023-07-14</lastmod>
     
