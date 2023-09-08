@@ -143,7 +143,7 @@ JWT (JSON Web Token) é um formato de token de autenticação que é usado para 
 
 JWTs podem ser assinados usando vários algoritmos, como HMAC ou RSA. Eles são geralmente enviados no cabeçalho de autorização das chamadas de API, como "Authorization: Bearer [JWT]" para que o servidor possa verificar a validade do token e as informações de autenticação contidas nele.
 
-JWT é amplamente utilizado em sistemas de autenticação distribuídos, onde diferentes sistemas precisam compartilhar informações de autenticação de forma segura. Ele é usado em conjunto com protocolos como OAuth 2.0 e OpenID Connect, para fornecer autenticação e autorização para aplicativos e usuários.
+JWT é amplamente utilizado em sistemas de autenticação distribuídos, onde diferentes sistemas precisam compartilhar informações de autenticação de forma segura. Ele é usado em conjunto com protocolos como OAuth 2.0 e OpenID Connect, visando fornecer autenticação e autorização para aplicativos e usuários.
 
 ### Autenticação 
 Autenticação é o processo de **verificar a identidade** de um usuário ou aplicativo que está tentando acessar uma API. Isso envolve o usuário fornecendo credenciais, como nome de usuário e senha, e o sistema de autenticação verificando essas credenciais em um banco de dados de usuários. Se as credenciais são válidas, o sistema emite um token de autenticação, como um JWT, que é usado para autorizar acesso a recursos protegidos.
