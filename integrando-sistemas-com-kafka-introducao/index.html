@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Danilo Soares Frois Cardoso">
+
+
+    <meta name="subtitle" content="Desenvolvimento Web e amenidades">
+
+
+    <meta name="description" content="Aqui falo sobre desenvolvimento web, computação em nuvem, arquitetura de soluções e algumas amenidades.">
+
+
+
+
+
+<title>Integrando sistemas com Kafka: uma breve introdução | Blog do Frois</title>
+
+
+
+    <link rel="icon" href="/blog/profile.png">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/blog/js/frame.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/blog/">
+          
+            Blog do Frois.
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/blog/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/blog/archives/">Posts</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a target="_blank" rel="noopener" href="https://forms.gle/HGmzdRRiWV47tNQe6/">Fale Comigo</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/blog/tags/2023/">
+                            2023
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/blog/tags/kafka/">
+                            kafka
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Integrando sistemas com Kafka: uma breve introdução
+            
+            
+        </div>
+        <span class="post-date">
+            02 10 2023
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <p>Quando falamos sobre integração de sistemas, existem diferentes tecnologias e padrões que podem ser adotados. Isso vale tanto para sistemas pequenos, como aqueles pessoais e de startups, até em casos de arquiteturas empresariais, com milhões de requisições por segundo. De forma muito simplificada, existem dois principais mecanismos para integrações serem feitas: síncronas, por meio de APIs, ou assíncronas, por meio de mensagens e eventos. Existem outros modelos, mas estes dois são os mais difundidos.</p>
+<p>Quando falamos de eventos e mensagens, precisamos nos aprofundar melhor para entender o que define um evento e uma mensagem. Vale a pena ter um texto apenas para falar disso. Mas de forma resumida:</p>
+<blockquote>
+<p>um evento é <strong>qualquer acontecimento</strong> em um sistema. Pode ser desde um item sendo adicionado em um carrinho de compras até um erro que aconteceu em um determinado ponto do sistema;</p>
+</blockquote>
+<blockquote>
+<p>Uma mensagem é uma <strong>forma de integrar</strong> diferentes sistemas, enviando a informação de um ponto a outro. </p>
+</blockquote>
+<p>Vale ressaltar que a mensageria tem um fluxo diferente de APIs. Quando uma API fornece um dado, ele somente é entregue quando solicitado, de forma síncrona. Já uma mensagem é enviada de forma assíncrona, ou seja, ela será armazenada em um determinado local onde será consumida quando o consumidor necessitar. Nesse ponto existem diferentes formas de gerar e armazenar mensagens, e é onde entra o Kafka, assunto principal do texto de hoje.</p>
+<h2 id="O-que-e-o-Kafka"><a href="#O-que-e-o-Kafka" class="headerlink" title="O que é o Kafka"></a>O que é o Kafka</h2><p>Existem várias ferramentas que podem ser usadas na hora de trabalhar com mensageria. Hoje falarei do Kakfa. Ele é uma aplicação criada pelo LinkedIn e que se tornou open source com o passar dos anos. Algumas pesquisas indicam que 80% das empresas na Fortune 100 usam a ferramenta de alguma forma.</p>
+<p>Para desenvolvedores e arquitetos e desenvolvedores é interessante estudar Kafka por vários motivos técnicos, entre eles:</p>
+<ul>
+<li>habilidade de publicar e assinar streaming de eventos</li>
+<li>processar streaming de eventos em tempo real</li>
+<li>manter uma lista ordenada de eventos de acordo com sua ocorrência</li>
+</ul>
+<img src="/blog/integrando-sistemas-com-kafka-introducao/before-and-after-kafka-1.png" class="">
+<p><em>Figura 1 - Sistemas antes e depois de usarem o Kafka. Fonte: Freecodecamp</em></p>
+<h2 id="Alguns-casos-de-uso"><a href="#Alguns-casos-de-uso" class="headerlink" title="Alguns casos de uso"></a>Alguns casos de uso</h2><p>Abaixo temos alguns exemplos de como o Kafka pode ser usado:</p>
+<ul>
+<li><strong>Netflix</strong>: Usa o Kafka para <a target="_blank" rel="noopener" href="https://www.confluent.io/blog/how-kafka-is-used-by-netflix/">manter sincronizada toda a sua gigantesca rede de microsserviços</a></li>
+<li><strong>Spotify</strong>: No Spotify o Kafka é utilizado para <a target="_blank" rel="noopener" href="https://engineering.atspotify.com/2016/03/spotifys-event-delivery-the-road-to-the-cloud-part-ii/">coleta de dados de streaming de músicas e podcasts, além de qualquer ação do usuário</a>. Com tais dados é possível fazer recomendações otimizadas</li>
+<li><strong>Banco ING</strong>: O banco holândes usa o Kafka, entre outros casos de uso, para <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=mAVSrb7Xrm8">mandar notificações em tempo real</a> sobre mudanças no valor de ações no mercado</li>
+</ul>
+<h2 id="O-que-vem-por-ai"><a href="#O-que-vem-por-ai" class="headerlink" title="O que vem por aí"></a>O que vem por aí</h2><p>Ainda não tenho nenhum conteúdo planejado, mas quero continuar escrevendo sobre os principais tópicos de Kafka conforme for estudando sobre e utilizando nos projetos em que estou envolvido. Fiquem ligados! 😉</p>
+<h2 id="Links-de-referencia"><a href="#Links-de-referencia" class="headerlink" title="Links de referência"></a>Links de referência</h2><p>Seguem abaixo alguns links para auxiliar no entendimento de como o Kafka pode te ajudar em suas soluções digitais.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/apache-kafka-handbook/">The Apache Kafka Handbook – How to Get Started Using Kafka. FreeCodeCamp</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/pt-br/azure/hdinsight/kafka/apache-kafka-introduction">O que é o Apache Kafka no Azure HDInsight. Microsoft</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/">Apache Kafka® Quick Start, Confluent Developer</a></li>
+</ul>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/blog/autenticando-apis-com-hmac/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                Danilo Soares Frois Cardoso | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
