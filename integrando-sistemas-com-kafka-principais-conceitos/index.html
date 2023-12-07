@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Danilo Soares Frois Cardoso">
+
+
+    <meta name="subtitle" content="Desenvolvimento Web e amenidades">
+
+
+    <meta name="description" content="Aqui falo sobre desenvolvimento web, computação em nuvem, arquitetura de soluções e algumas amenidades.">
+
+
+
+
+
+<title>Integrando sistemas com Kafka: principais conceitos | Blog do Frois</title>
+
+
+
+    <link rel="icon" href="/blog/profile.png">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/blog/js/frame.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/blog/">
+          
+            Blog do Frois.
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/blog/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/blog/archives/">Posts</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a target="_blank" rel="noopener" href="https://forms.gle/HGmzdRRiWV47tNQe6/">Fale Comigo</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/blog/tags/2023/">
+                            2023
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/blog/tags/arquitetura/">
+                            arquitetura
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/blog/tags/kafka/">
+                            kafka
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Integrando sistemas com Kafka: principais conceitos
+            
+            
+        </div>
+        <span class="post-date">
+            07 12 2023
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <p>Quando trabalhamos com Kafka, existem alguns conceitos e palavras-chave que acabam aparecendo com bastante frequência. Antes de falar sobre cada um deles, vale a pena visualizar como a arquitetura do Kafka costuma funcionar:</p>
+<p><img src="https://sgitario.github.io/images/kafka_concepts_1.png"></p>
+<p><strong>Figura 1</strong> - Arquitetura Kafka. <strong>Fonte</strong>: <a target="_blank" rel="noopener" href="https://sgitario.github.io/rabbitmq_vs_kafka/">RabbitMQ vs Apache Kafka</a></p>
+<h2 id="Eventos"><a href="#Eventos" class="headerlink" title="Eventos"></a>Eventos</h2><p>Um evento nada mais é do que uma <strong>ação que ocorreu</strong> e foi processada pelo Kafka. Quando queremos informar um sistema sobre algo que aconteceu em outro sistema usando Kafka, estamos utilizando eventos para isso. Cada evento possui a seguinte estrutura:</p>
+<ul>
+<li><strong>Chave</strong>: Campo obrigatório. É um <strong>identificador exclusivo</strong> para a mensagem, a chave é usada para distribuir as mensagens entre as partições do tópico, conceitos que veremos mais à frente. Se esse campo não for criado anteriormente, o próprio Kafka irá preenchê-lo.</li>
+<li><strong>Value</strong>: Campo obrigatório. É o valor que aquele evento possui. Pode ser qualquer tipo de dados, como texto, binário ou JSON;</li>
+<li><strong>Campos opcionais</strong>:<ul>
+<li><strong>Timestamp</strong>: marcação de <strong>data&#x2F;hora</strong> em que a mensagem foi criada. Por <em>default</em> esse campo representa o momento em que a mensasgem foi criada, mas ele pode ser atualizado para quando um momento anterior, caso seja sua necessidade. </li>
+<li><strong>Headers</strong>: Pares de chave-valor que podem ser usados para armazenar <strong>informações adicionais</strong> sobre a mensagem.</li>
+</ul>
+</li>
+</ul>
+<p>Abaixo, temos o exemplo de um evento do Kafka:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;key&quot;</span>: <span class="string">&quot;1234567890&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;value&quot;</span>: <span class="string">&quot;Olá, mundo!&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;timestamp&quot;</span>: <span class="number">1696876469</span>,</span><br><span class="line">  <span class="attr">&quot;headers&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;content-type&quot;</span>: <span class="string">&quot;text/plain&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Neste exemplo, o evento processado pelo Kafka tem:</p>
+<ul>
+<li>O ID único do evento sendo <em>1234567890</em></li>
+<li>Mensagem <em>“Olá, mundo!”</em></li>
+<li>O <em>timestamp</em> é 1696876469, o que significa que a mensagem foi <a target="_blank" rel="noopener" href="https://www.unixtimestamp.com/">criada no dia 09 de outubro de 2023, às 15:34:29 no horário de Brasília</a></li>
+<li>O <em>Content-Type</em> está definido como <em>text&#x2F;plain</em>, o que significa que a mensagem está no formato “texto puro”</li>
+</ul>
+<h2 id="Topico"><a href="#Topico" class="headerlink" title="Tópico"></a>Tópico</h2><p>Um tópico no Kafka é a forma como as mensagens são organizadas em caráter cronológico. Um tópico é organizado por dois principais itens: as mensagens e o offset de cada mensagem. O Kafka anexa cada nova mensagem no final de um tópico. Logo isso faz com o que Kafka siga uma arquitetura FIFO (first in, first out), onde os eventos são consumidos na ordem em que foram criados. </p>
+<p>Vale lembrar que como o Kafka salva os eventos em disco no formato de log, cada mensagem é salva no final de um arquivo, igual os sistemas de log que costumamos usar em sistemas feitos em Java, por exemplo. </p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2023/01/topic.PNG"></p>
+<p><strong>Figura 2</strong> - Como tópicos funcionam no Kafka. <strong>Fonte</strong>: <a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/apache-kafka-handbook/#event-messages-in-kafka">The Apache Kafka Handbook – How to Get Started Using Kafka</a></p>
+<h2 id="Produtor"><a href="#Produtor" class="headerlink" title="Produtor"></a>Produtor</h2><p>Um produtor é um software que envia eventos para um tópico. Ele pode ser um microsserviço criado apenas para mandar os eventos ou um software já existente e ajustado para enviar eventos. Adicionando algumas dependências e com poucas alterações de código já é possível começar o envio desses eventos.</p>
+<p>Alguns projetos específicos usam até mesmo hardwares para enviarem eventos. Uma empresa que monitora o clima, por exemplo, pode guardar as diferentes medições em tópicos, permitindo haver análise histórica ou a criação de gatilhos para quando determinados cenários acontecerem. </p>
+<p>Como podemos ver na imagem abaixo, na arquitetura de eventos do Uber o aplicativo do motorista, do cliente, assim como outros serviços são produtores de eventos. Todos gravam eventos em tópicos que são consumidos por dashboards, times de debbuging e sistemas de análise em tempo real.</p>
+<p><img src="https://static.imasters.com.br/wp-content/uploads/2016/08/uber-1.png"></p>
+<p><strong>Figura 3</strong> - Como tópicos funcionam no Kafka. <strong>Fonte</strong>: <a target="_blank" rel="noopener" href="https://imasters.com.br/analytics/umirrormaker-replicator-robusto-kafka-da-engenharia-da-uber">uMirrorMaker: Replicador robusto Kafka da engenharia da Uber</a></p>
+<h2 id="Consumidor"><a href="#Consumidor" class="headerlink" title="Consumidor"></a>Consumidor</h2><p>Usando o mesmo exemplo acima, podemos ver que um consumidor nada mais é do que um software conectado em tópicos, mas que ao invés de produzir acabam consumindo os eventos. Um consumidor é configurado praticamente da mesma forma que um produtor, com a diferença que a sua natureza dentro do ecossistema é diferente. É possível, até mesmo, que um mesmo software seja consumidor e produtor, tudo vai depender da arquitetura que o time de sua empresa adotará. No exemplo da Uber, vemos que existem vários consumidores lendo os eventos que foram criados durante o uso dos aplicativos da empresa pelos motoristas e passageiros.</p>
+<h2 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h2><p>Um broker Kafka é uma estrutura que engloba um ou mais servidores Kafka. É nele que os eventos e tópicos ficam armazenados. Pensando em arquiteturas escaláveis, podemos ter N brokers dentro de um mesmo cluster Kafka. </p>
+<p><img src="https://www.cloudkarafka.com/img/blog/kafka-broker-beginner.png"></p>
+<p><strong>Figura 4</strong> - Broker Kafka. <strong>Fonte:</strong> <a target="_blank" rel="noopener" href="https://www.cloudkarafka.com/img/blog/kafka-broker-beginner.png">Part 1: Apache Kafka for beginners - What is Apache Kafka?</a></p>
+<h2 id="Particao"><a href="#Particao" class="headerlink" title="Partição"></a>Partição</h2><p>No Kafka uma partição é considerado uma cópia de um determinado tópico. Os tópicos são divididos em partições para distribuir as mensagens entre os brokers do Kafka. Cada partição é armazenada em um arquivo de log no sistema de arquivos do broker. Como vantagem, temos uma <strong>melhor distribuição de carga</strong> dentro do próprio Kafka, que armazena as mensagens e cópias de forma equilibrada dentro do broker, <strong>redundância</strong> já que as mensagens são salvas em mais de um lugar e <strong>paralelismo</strong>, permitindo que mais de um consumidor possa ler os eventos ao mesmo tempo.</p>
+<h2 id="Offset"><a href="#Offset" class="headerlink" title="Offset"></a>Offset</h2><p>Para identificar uma mensagem em uma determinada partição, usamos o offset. Um offset é um identificador único que representa a posição de uma mensagem em determinada partição. Quando um consumidor se inscreve em um tópico, ele recebe o offset inicial, que pode ser definido pelo produtor ou pelo consumidor. O consumidor então usa o offset para solicitar as mensagens do Kafka. O consumidor pode commitar o offset após consumir uma mensagem, ou seja, o Kafka saberá que a mensagem foi processada pelo consumidor. Esse processo de “avisar” o Kafka sobre o consumo da mensagem é conhecido como <em>acknowledge</em>. Falaremos mais sobre esse processo abaixo. </p>
+<p><img src="https://www.cloudkarafka.com/img/blog/apache-kafka-partitions-topics.png"></p>
+<p><strong>Figura 5</strong> - Offsets e partições. <strong>Fonte:</strong> <a target="_blank" rel="noopener" href="https://www.cloudkarafka.com/img/blog/apache-kafka-partitions-topics.png">Part 1: Apache Kafka for beginners - What is Apache Kafka?</a></p>
+<h2 id="Acknowledge"><a href="#Acknowledge" class="headerlink" title="Acknowledge"></a>Acknowledge</h2><p>O acknowledge é um processo importante para garantir que as mensagens sejam consumidas apenas uma vez e para evitar a sua perda. Existem dois tipos de acknowledge: automáticos e manuais. No automático o Kafka assume que a mensagem foi consumida com sucesso <strong>quando o consumidor a recebe</strong>. No manual, o consumidor deve enviar um acknowledge explícito ao Kafka para indicar que a mensagem foi consumida com sucesso.</p>
+<p>Vale ressaltar que o acknowledge automático é o modo padrão de operação do Kafka. Apesar de ser simples e eficiente, não fornece garantia de que as mensagens serão consumidas apenas uma vez. No caso do acknowledge manual temos mais controle sobre o processo de consumo dos eventos. O consumidor pode escolher quando e como enviar o acknowledge. Isso pode ser útil em cenários onde é importante garantir que as mensagens sejam consumidas apenas uma vez ou quando o consumidor precisa processar as mensagens antes de enviar o acknowledge.</p>
+<h2 id="Consumer-Groups"><a href="#Consumer-Groups" class="headerlink" title="Consumer Groups"></a>Consumer Groups</h2><p>Os consumer groups são uma forma de organizar o consumo de eventos de um determinado tópico. Os consumidores de um mesmo grupo compartilham as mensagens daquele tópico, de modo que cada consumidor recebe apenas uma parte das mensagens. Isso ajuda na escalabilidade e resiliência do consumo, já que cada consumidor consome um pouco das mensagens, além de permitir que um consumo falho seja feito novamente por outro consumidor daquele grupo.</p>
+<p>Os consumidores de um mesmo grupo começam a consumir as mensagens a partir do mesmo offset inicial. O Kafka garante que cada consumidor receba apenas uma parte das mensagens do tópico. Quando há o consumo de um evento, o consumidor pode commitar o offset da mensagem, processo que falamos mais ali em cima. Com isso o Kafka saberá quais consumos foram realizados por determinado consumer group. </p>
+<hr>
+<p>De modo geral, acredito que esses são os principais componentes e palavras-chave que precisamos conhecer ao trabalhar com Kafka, ou pelo menos no começo das entregas com essa tecnologia. Conforme houver o aprofundamento na tecnologia, é natural que hajam novos conceitos para descobrir e ler sobre. No próximo texto planejo falar sobre os Padrões de Arquitetura que envolvem o uso de eventos, como CQRS e SAGA, por exemplo. </p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/blog/integrando-sistemas-com-kafka-introducao/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                Danilo Soares Frois Cardoso | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
