@@ -32,6 +32,11 @@ APIs são baseadas na [protocolo de comunicação HTTP](https://rockcontent.com/
 
 A partir do momento que você escolher um prato e comunicar ao garçom, estará fazendo uma nova requisição, dessa vez pedindo um prato. 
 
+### Requisições e respostas
+Apesar de já fazer parte da explicação anterior, acredito que faça sentido deixar esse ponto um pouco mais específico. Como a comunicação na internet sempre tem um servidor e um solicitante, imagine que toda comunicação será síncrona. Vamos imaginar um exemplo de dois irmãos conversando. Digamos que o irmão mais novo quer saber onde está o seu controle do videogame perguntando para seu irmão mais velho. Nesse exemplo o irmão mais novo é o cliente, que precisa da informação, enquanto o irmão mais velho é o servidor, o que detém - ou não - a informação necessária.
+
+Para que os dois se comuniquem, é necessário que o irmão mais novo faça uma pergunta. No caso de APIs chamamos isso de requisição. A resposta do irmão, independente do conteúdo, será dada ao irmão mais novo por ser uma comunicação síncrona. Podemos enriquecer esse exemplo posteriormente incluindo os verbos HTTP e os códigos de resposta para um melhor entendimento.
+
 ### APIs não guardam estado
 
 Assim como um cardápio não armazena informações sobre o cliente, uma API não salva nenhuma informação que passa por ela, sendo considerada *stateless*. Além disso, cada requisição é fechada logo depois de ser realizada. Isso significa que cabe às partes - cliente e servidor - guardar os dados caso seja necessário, já que a API é a apenas um protocolo de comunicação. No nosso exemplo do restaurante, o garçom pode guardar o nome da pessoa para um melhor atendimento e irá guardar as informações do pedido para garantir que seja atendido conforme solicitado.
