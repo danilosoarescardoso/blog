@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Danilo Soares Frois Cardoso">
+
+
+    <meta name="subtitle" content="Desenvolvimento Web e amenidades">
+
+
+    <meta name="description" content="Aqui falo sobre desenvolvimento web, computação em nuvem, arquitetura de soluções e algumas amenidades.">
+
+
+
+
+
+<title>API Para Pessoas de Negócio: Códigos HTTP | Blog do Frois</title>
+
+
+
+    <link rel="icon" href="/blog/profile.png">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/blog/js/frame.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/blog/">
+          
+            Blog do Frois.
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/blog/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/blog/archives/">Posts</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/danilosoarescardoso/">Fale Comigo</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/blog/tags/apis/">
+                            apis
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/blog/tags/2024/">
+                            2024
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                API Para Pessoas de Negócio: Códigos HTTP
+            
+            
+        </div>
+        <span class="post-date">
+            21 10 2024
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <p>Nesse texto reúno algumas dicas importantes sobre Códigos de Resposta HTTP, essenciais para o bom funcionamento de uma API e&#x2F;ou produto digital.</p>
+<h2 id="O-que-sao-Codigos-de-Resposta-HTTP"><a href="#O-que-sao-Codigos-de-Resposta-HTTP" class="headerlink" title="O que são Códigos de Resposta HTTP"></a>O que são Códigos de Resposta HTTP</h2><p>Na comunicação HTTP, temos sempre dois atores: um <strong>cliente</strong> e um <strong>servidor</strong>. O cliente pede informações ou ações e o servidor interpreta e envia respostas, sempre de forma síncrona. Para que o cliente saiba o que aconteceu durante a solicitação feita ao servidor, as respostas do servidor possuem um código de resposta, para auxiliar no entendimento.</p>
+<p>Dados podem ser enviados quando necessário pelo servidor, mas os códigos de resposta garantem que o cliente possa entender qual comportamento ocorreu..</p>
+<h2 id="Familias-de-codigo-HTTP-1XX-2XX-3XX-4XX-e-5XX"><a href="#Familias-de-codigo-HTTP-1XX-2XX-3XX-4XX-e-5XX" class="headerlink" title="Famílias de código HTTP (1XX, 2XX, 3XX, 4XX e 5XX)"></a>Famílias de código HTTP (1XX, 2XX, 3XX, 4XX e 5XX)</h2><p>Para facilitar a interpretação pelo cliente, os códigos de resposta HTTP são classificados em diferentes “famílias”, com base no primeiro dígito, e cada uma delas indica um tipo de situação ou resposta que o servidor está fornecendo ao cliente.</p>
+<p><strong>1XX (Informacional</strong>): Essas respostas são raramente vistas pelo usuário, pois indicam que o servidor recebeu a solicitação e que o cliente pode continuar o processo.<br><strong>Exemplo: 100 Continue</strong> significa que o cliente pode continuar enviando o corpo da solicitação, já que os cabeçalhos foram aceitos.</p>
+<p><strong>2XX (Sucesso)</strong>: Essa família indica que a solicitação foi recebida, compreendida e processada corretamente. O código mais comum é o <strong>200 OK</strong>, que informa que a operação foi concluída com sucesso. Outros exemplos incluem o <strong>201 Created</strong>, utilizado quando um novo recurso é criado, como ao cadastrar um novo usuário.</p>
+<p><strong>3XX (Redirecionamento)</strong>: Esses códigos informam que o cliente precisa tomar outra ação para completar a solicitação. O <strong>301 Moved Permanently</strong> indica que o recurso foi movido permanentemente para uma nova URL, enquanto o <strong>302 Found</strong> indica um redirecionamento temporário.</p>
+<p><strong>4XX (Erros do Cliente)</strong>: Esta categoria cobre situações em que houve um problema com a solicitação feita pelo cliente. O <strong>404 Not Found</strong> é um dos mais conhecidos e indica que o recurso solicitado não foi encontrado. Outro exemplo é o <strong>400 Bad Request</strong>, que indica que a solicitação não pôde ser processada devido a uma sintaxe incorreta.</p>
+<p><strong>5XX (Erros do Servidor)</strong>: Esses códigos indicam que o servidor encontrou um erro ao tentar processar a solicitação. O <strong>500 Internal Server Error</strong> é o mais comum e indica uma falha genérica no servidor. Outro exemplo é o <strong>503 Service Unavailable</strong>, que indica que o servidor está temporariamente incapaz de atender a solicitação, geralmente devido a manutenção ou sobrecarga.</p>
+<h2 id="Dicas-importantes"><a href="#Dicas-importantes" class="headerlink" title="Dicas importantes"></a>Dicas importantes</h2><h3 id="Nao-precisamos-usar-todos-os-codigos-HTTP"><a href="#Nao-precisamos-usar-todos-os-codigos-HTTP" class="headerlink" title="Não precisamos usar todos os códigos HTTP"></a>Não precisamos usar todos os códigos HTTP</h3><p>Os códigos de status HTTP são padronizados para facilitar a comunicação entre servidores e clientes (navegadores ou outras aplicações), mas não é obrigatório que todos eles sejam utilizados em uma aplicação. Na prática, muitas APIs e sistemas utilizam apenas um subconjunto desses códigos, especialmente os mais comuns, como o <strong>200 OK</strong>, <strong>404 Not Found</strong>, e <strong>500 Internal Server Error</strong>. O uso de muitos códigos pode complicar a manutenção ou a consistência das respostas em alguns sistemas, e é comum simplificar utilizando apenas os mais relevantes para o contexto da aplicação.</p>
+<p>Isso não compromete o funcionamento da comunicação, desde que os códigos escolhidos sejam usados corretamente e correspondam ao comportamento esperado pelo cliente. O importante é <strong>garantir que o cliente saiba</strong> se a solicitação foi bem-sucedida ou se ocorreu um erro, e como lidar com as situações apresentadas. O uso consciente e simplificado dos códigos mais comuns garante clareza e eficiência nas respostas.</p>
+<h3 id="Faca-benchmarks"><a href="#Faca-benchmarks" class="headerlink" title="Faça benchmarks"></a>Faça benchmarks</h3><p>Empresas líderes em suas áreas, como Stripe e GitHub, são exemplos de excelência no uso de códigos HTTP, oferecendo APIs robustas, com respostas claras e padronizadas. Fazer bench dessas empresas permite adotar boas práticas já validadas por elas além de evitar cenários já passados pelas mesmas. Temos dois exemplos muito bons que são:</p>
+<p><strong>Exemplo no Mercado Financeiro: Stripe</strong><br>A Stripe, uma das principais plataformas de pagamento online, é referência no uso de APIs bem documentadas e na aplicação criteriosa de códigos HTTP. No contexto de serviços financeiros, onde precisão e confiança são fundamentais, a Stripe define claramente o comportamento de sua API usando os códigos HTTP de forma consistente e previsível. Por exemplo:</p>
+<p><strong>200 OK</strong>: Usado para confirmações de sucesso em transações e operações com dados sensíveis.</p>
+<p><strong>201 Created:</strong> Utilizado quando um novo recurso é criado, como uma nova cobrança ou cliente, com a URL do novo recurso sendo retornada.</p>
+<p><strong>400 Bad Request</strong>: Quando uma solicitação falha devido a um erro do cliente, como falta de parâmetros obrigatórios ao criar uma cobrança.</p>
+<p><strong>402 Payment Required</strong>: Um código relativamente raro, mas usado pela Stripe para indicar que há um problema com o pagamento, como um cartão de crédito recusado.</p>
+<p>A Stripe também oferece um excelente exemplo de como usar detalhadamente os códigos 4XX e 5XX para comunicar erros relacionados ao processamento de pagamentos, fornecendo mensagens detalhadas de erro e orientações claras de correção.</p>
+<p><strong>Exemplo em Outras Áreas: GitHub (Tecnologia)</strong><br>No setor de tecnologia, o GitHub é uma referência para APIs usadas por desenvolvedores de software. Ele oferece uma API pública que permite interagir com repositórios, issues, pull requests, entre outras funcionalidades. O GitHub também adota um uso eficiente dos códigos HTTP:</p>
+<p><strong>202 Accepted:</strong> Usado quando uma ação foi aceita, mas ainda está em processamento, como a criação de uma build ou uma operação de merge.</p>
+<p><strong>403 Forbidden:</strong> Comumente retornado quando um usuário tenta acessar um repositório privado ou fazer ações para as quais não tem permissões.</p>
+<p><strong>409 Conflict:</strong> Utilizado para indicar conflitos, como quando um merge não pode ser concluído devido a alterações conflitantes.</p>
+<p>Além disso, o GitHub faz um excelente uso do rate limiting (limitação de taxa) e retorna 429 Too Many Requests quando o cliente ultrapassa o limite de solicitações permitidas, incentivando o uso responsável da API.</p>
+<h3 id="Codigos-HTTP-Mais-Usados-em-APIs-com-Casos-de-Uso"><a href="#Codigos-HTTP-Mais-Usados-em-APIs-com-Casos-de-Uso" class="headerlink" title="Códigos HTTP Mais Usados em APIs com Casos de Uso"></a>Códigos HTTP Mais Usados em APIs com Casos de Uso</h3><p>Quando desenvolvemos APIs REST, o uso correto dos códigos de status HTTP é essencial para fornecer respostas claras e padronizadas aos clientes. Cada código transmite informações importantes sobre o sucesso ou falha de uma operação e ajuda os consumidores da API a entenderem como lidar com as respostas.</p>
+<p>Abaixo estão os códigos HTTP mais comuns em APIs REST, junto com exemplos de casos de uso específicos:</p>
+<h5 id="2XX-sucesso"><a href="#2XX-sucesso" class="headerlink" title="2XX (sucesso)"></a>2XX (sucesso)</h5><p><strong>200 OK</strong><br>  <strong>Uso:</strong> A solicitação foi processada com sucesso e a resposta contém os dados solicitados ou a confirmação da operação.<br>  <strong>Caso:</strong> Retornar uma lista de recursos ou os detalhes de um recurso específico após um <code>GET</code>. Também usado para confirmar sucesso em atualizações via <code>PUT</code> ou <code>PATCH</code>.</p>
+<p><strong>201 Created</strong><br>  <strong>Uso:</strong> Indica que um novo recurso foi criado com sucesso.<br>  <strong>Caso:</strong> Após uma requisição <code>POST</code>, como ao registrar um novo usuário ou criar um item. A resposta deve incluir o cabeçalho <code>Location</code> com a URL do novo recurso criado.</p>
+<p><strong>204 No Content</strong><br>  <strong>Uso:</strong> A solicitação foi bem-sucedida, mas não há conteúdo para retornar.<br>  <strong>Caso:</strong> Usado para operações como <code>DELETE</code>, quando o recurso foi removido com sucesso, ou para <code>PUT</code>&#x2F;<code>PATCH</code>, quando uma atualização é realizada sem a necessidade de retornar dados.</p>
+<h5 id="3XX-redirecionamento"><a href="#3XX-redirecionamento" class="headerlink" title="3XX (redirecionamento)"></a>3XX (redirecionamento)</h5><p><strong>301 Moved Permanently</strong><br>  <strong>Uso:</strong> Indica que o recurso foi movido permanentemente para uma nova URL.<br>  <strong>Caso:</strong> Ao mudar a estrutura da API e redirecionar clientes de uma rota antiga para uma nova, garantindo compatibilidade com versões anteriores.</p>
+<p><strong>304 Not Modified</strong><br>  <strong>Uso:</strong> Informa que o recurso não foi modificado desde a última solicitação, permitindo que o cliente use a versão em cache.<br>  <strong>Caso:</strong> Em endpoints de <code>GET</code>, quando o cliente já possui uma cópia do recurso (com base no <code>ETag</code> ou <code>Last-Modified</code>), evitando o tráfego desnecessário de dados.</p>
+<h5 id="4XX-erros-do-cliente"><a href="#4XX-erros-do-cliente" class="headerlink" title="4XX (erros do cliente)"></a>4XX (erros do cliente)</h5><p><strong>400 Bad Request</strong><br>  <strong>Uso:</strong> A solicitação é inválida ou malformada, como erros de sintaxe ou parâmetros incorretos.<br>  <strong>Caso:</strong> O cliente envia um corpo JSON malformado ou parâmetros de consulta inválidos, como ao tentar criar um recurso com dados faltantes ou incorretos.</p>
+<p><strong>401 Unauthorized</strong><br>  <strong>Uso:</strong> O cliente não forneceu credenciais de autenticação ou as credenciais são inválidas.<br>  <strong>Caso:</strong> Tentativa de acessar um endpoint protegido sem token de autenticação ou com um token expirado.</p>
+<p><strong>403 Forbidden</strong><br>  <strong>Uso:</strong> O cliente está autenticado, mas não tem permissão para acessar o recurso.<br>  <strong>Caso:</strong> Um usuário autenticado tenta acessar um recurso ou realizar uma ação para a qual não possui as permissões adequadas, como tentar deletar um recurso de outro usuário.</p>
+<p><strong>404 Not Found</strong><br>  <strong>Uso:</strong> O recurso solicitado não foi encontrado.<br>  <strong>Caso:</strong> Tentativa de acessar um recurso que não existe ou que foi removido, como buscar por um ID inexistente em uma coleção de usuários.</p>
+<p><strong>405 Method Not Allowed</strong><br>  <strong>Uso:</strong> O método HTTP utilizado não é suportado para o recurso solicitado.<br>  <strong>Caso:</strong> Tentar usar <code>POST</code> em um endpoint que só aceita <code>GET</code>, ou <code>DELETE</code> em um recurso que não permite exclusão.</p>
+<p><strong>422 Unprocessable Entity</strong><br>  <strong>Uso:</strong> A solicitação é bem formada, mas não pode ser processada devido a erros de validação nos dados.<br>  <strong>Caso:</strong> Ao enviar um <code>POST</code> ou <code>PUT</code> com dados que falham em passar regras de validação, como um campo de e-mail ausente ou formato incorreto.</p>
+<h5 id="5XX-erros-do-servidor"><a href="#5XX-erros-do-servidor" class="headerlink" title="5XX (erros do servidor)"></a>5XX (erros do servidor)</h5><p><strong>500 Internal Server Error</strong><br>  <strong>Uso:</strong> Ocorreu um erro inesperado no servidor ao processar a solicitação.<br>  <strong>Caso:</strong> Erros genéricos que não foram tratados adequadamente pelo servidor, como exceções não capturadas ou falhas no código.</p>
+<p><strong>502 Bad Gateway</strong><br>  <strong>Uso:</strong> O servidor, atuando como gateway ou proxy, recebeu uma resposta inválida de outro servidor upstream.<br>  <strong>Caso:</strong> Em arquiteturas de microserviços, quando um serviço não consegue se comunicar corretamente com outro serviço de backend.</p>
+<p><strong>503 Service Unavailable</strong><br>  <strong>Uso:</strong> O servidor está temporariamente indisponível, geralmente por causa de manutenção ou sobrecarga.<br>  <strong>Caso:</strong> Quando o serviço está em manutenção ou o servidor está com excesso de carga e não consegue processar novas solicitações.</p>
+<p><strong>504 Gateway Timeout</strong><br>  <strong>Uso:</strong> Um servidor, atuando como gateway ou proxy, não recebeu uma resposta a tempo de outro servidor upstream.<br>  <strong>Caso:</strong> Quando um microserviço demora mais do que o esperado para responder, resultando em um timeout na comunicação entre serviços.</p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/blog/conhecendo-novas-bandas/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                Danilo Soares Frois Cardoso | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
