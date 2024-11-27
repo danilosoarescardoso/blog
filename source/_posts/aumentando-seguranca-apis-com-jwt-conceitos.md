@@ -1,7 +1,7 @@
 ---
 title: Aumentando a segurança de APIs com JWT - Conceitos
 date: 2021-07-15 17:25:14
-tags: [segurança, api, oauth, jwt]
+tags: [segurança, apis, oauth, jwt]
 ---
 
 ## Introdução

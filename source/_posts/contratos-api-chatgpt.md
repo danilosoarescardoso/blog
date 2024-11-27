@@ -1,7 +1,7 @@
 ---
 title: Estudando contratos de API com ChatGPT
 date: 2023-03-15 09:37:05
-tags: [inteligência artificial, chatGPT, api, 2023]
+tags: [inteligência artificial, chatGPT, apis, 2023]
 ---
 
 Estava estudando melhores práticas para documentações de APIs hoje quando me surgiu uma ideia: 
