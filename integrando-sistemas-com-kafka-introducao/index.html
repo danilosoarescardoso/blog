@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang=pt>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Quando falamos sobre integração de sistemas, existem diferentes tecnologias e padrões que podem ser adotados. Isso vale tanto para sistemas pequenos, como aqueles pessoais e de startups, até em casos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Integrando sistemas com Kafka: uma breve introdução">
+<meta property="og:url" content="https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/index.html">
+<meta property="og:site_name" content="Blog do Frois">
+<meta property="og:description" content="Quando falamos sobre integração de sistemas, existem diferentes tecnologias e padrões que podem ser adotados. Isso vale tanto para sistemas pequenos, como aqueles pessoais e de startups, até em casos">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://danilocardoso.dev/blog/integrando-sistemas-com-kafka-introducao/before-and-after-kafka-1.png">
+<meta property="article:published_time" content="2023-10-02T17:31:37.000Z">
+<meta property="article:modified_time" content="2025-01-06T14:11:02.574Z">
+<meta property="article:author" content="Danilo Soares Frois Cardoso">
+<meta property="article:tag" content="2023">
+<meta property="article:tag" content="kafka">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://danilocardoso.dev/blog/integrando-sistemas-com-kafka-introducao/before-and-after-kafka-1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Integrando sistemas com Kafka: uma breve introdução</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/blog/integrando-sistemas-com-kafka-principais-conceitos/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Seguinte" href="/blog/autenticando-apis-com-hmac/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
+      <span id="i-top" class="info" style="display:none;">Acima</span>
+      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&text=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&title=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&is_video=false&description=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Integrando sistemas com Kafka: uma breve introdução&body=Check out this article: https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&title=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&title=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&title=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&title=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&name=Integrando sistemas com Kafka: uma breve introdução&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&t=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-e-o-Kafka"><span class="toc-number">1.</span> <span class="toc-text">O que é o Kafka</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alguns-casos-de-uso"><span class="toc-number">2.</span> <span class="toc-text">Alguns casos de uso</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-vem-por-ai"><span class="toc-number">3.</span> <span class="toc-text">O que vem por aí</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Links-de-referencia"><span class="toc-number">4.</span> <span class="toc-text">Links de referência</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Integrando sistemas com Kafka: uma breve introdução
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-10-02T17:31:37.000Z" class="dt-published" itemprop="datePublished">2023-10-02</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/2023/" rel="tag">2023</a>, <a class="p-category" href="/blog/tags/kafka/" rel="tag">kafka</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Quando falamos sobre integração de sistemas, existem diferentes tecnologias e padrões que podem ser adotados. Isso vale tanto para sistemas pequenos, como aqueles pessoais e de startups, até em casos de arquiteturas empresariais, com milhões de requisições por segundo. De forma muito simplificada, existem dois principais mecanismos para integrações serem feitas: síncronas, por meio de APIs, ou assíncronas, por meio de mensagens e eventos. Existem outros modelos, mas estes dois são os mais difundidos.</p>
+<p>Quando falamos de eventos e mensagens, precisamos nos aprofundar melhor para entender o que define um evento e uma mensagem. Vale a pena ter um texto apenas para falar disso. Mas de forma resumida:</p>
+<blockquote>
+<p>um evento é <strong>qualquer acontecimento</strong> em um sistema. Pode ser desde um item sendo adicionado em um carrinho de compras até um erro que aconteceu em um determinado ponto do sistema;</p>
+</blockquote>
+<blockquote>
+<p>Uma mensagem é uma <strong>forma de integrar</strong> diferentes sistemas, enviando a informação de um ponto a outro. </p>
+</blockquote>
+<p>Vale ressaltar que a mensageria tem um fluxo diferente de APIs. Quando uma API fornece um dado, ele somente é entregue quando solicitado, de forma síncrona. Já uma mensagem é enviada de forma assíncrona, ou seja, ela será armazenada em um determinado local onde será consumida quando o consumidor necessitar. Nesse ponto existem diferentes formas de gerar e armazenar mensagens, e é onde entra o Kafka, assunto principal do texto de hoje.</p>
+<h2 id="O-que-e-o-Kafka"><a href="#O-que-e-o-Kafka" class="headerlink" title="O que é o Kafka"></a>O que é o Kafka</h2><p>Existem várias ferramentas que podem ser usadas na hora de trabalhar com mensageria. Hoje falarei do Kakfa. Ele é uma aplicação criada pelo LinkedIn e que se tornou open source com o passar dos anos. Algumas pesquisas indicam que 80% das empresas na Fortune 100 usam a ferramenta de alguma forma.</p>
+<p>Para desenvolvedores e arquitetos e desenvolvedores é interessante estudar Kafka por vários motivos técnicos, entre eles:</p>
+<ul>
+<li>habilidade de publicar e assinar streaming de eventos</li>
+<li>processar streaming de eventos em tempo real</li>
+<li>manter uma lista ordenada de eventos de acordo com sua ocorrência</li>
+</ul>
+<img src="/blog/integrando-sistemas-com-kafka-introducao/before-and-after-kafka-1.png" class="">
+<p><em>Figura 1 - Sistemas antes e depois de usarem o Kafka. Fonte: Freecodecamp</em></p>
+<h2 id="Alguns-casos-de-uso"><a href="#Alguns-casos-de-uso" class="headerlink" title="Alguns casos de uso"></a>Alguns casos de uso</h2><p>Abaixo temos alguns exemplos de como o Kafka pode ser usado:</p>
+<ul>
+<li><strong>Netflix</strong>: Usa o Kafka para <a target="_blank" rel="noopener" href="https://www.confluent.io/blog/how-kafka-is-used-by-netflix/">manter sincronizada toda a sua gigantesca rede de microsserviços</a></li>
+<li><strong>Spotify</strong>: No Spotify o Kafka é utilizado para <a target="_blank" rel="noopener" href="https://engineering.atspotify.com/2016/03/spotifys-event-delivery-the-road-to-the-cloud-part-ii/">coleta de dados de streaming de músicas e podcasts, além de qualquer ação do usuário</a>. Com tais dados é possível fazer recomendações otimizadas</li>
+<li><strong>Banco ING</strong>: O banco holândes usa o Kafka, entre outros casos de uso, para <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=mAVSrb7Xrm8">mandar notificações em tempo real</a> sobre mudanças no valor de ações no mercado</li>
+</ul>
+<h2 id="O-que-vem-por-ai"><a href="#O-que-vem-por-ai" class="headerlink" title="O que vem por aí"></a>O que vem por aí</h2><p>Ainda não tenho nenhum conteúdo planejado, mas quero continuar escrevendo sobre os principais tópicos de Kafka conforme for estudando sobre e utilizando nos projetos em que estou envolvido. Fiquem ligados! 😉</p>
+<h2 id="Links-de-referencia"><a href="#Links-de-referencia" class="headerlink" title="Links de referência"></a>Links de referência</h2><p>Seguem abaixo alguns links para auxiliar no entendimento de como o Kafka pode te ajudar em suas soluções digitais.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/apache-kafka-handbook/">The Apache Kafka Handbook – How to Get Started Using Kafka. FreeCodeCamp</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/pt-br/azure/hdinsight/kafka/apache-kafka-introduction">O que é o Apache Kafka no Azure HDInsight. Microsoft</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/">Apache Kafka® Quick Start, Confluent Developer</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">Início</a></li>
+        
+          <li><a href="/blog/about/">Sobre</a></li>
+        
+          <li><a href="/blog/archives/">Artigos</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-e-o-Kafka"><span class="toc-number">1.</span> <span class="toc-text">O que é o Kafka</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alguns-casos-de-uso"><span class="toc-number">2.</span> <span class="toc-text">Alguns casos de uso</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-vem-por-ai"><span class="toc-number">3.</span> <span class="toc-text">O que vem por aí</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Links-de-referencia"><span class="toc-number">4.</span> <span class="toc-text">Links de referência</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&text=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&title=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&is_video=false&description=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Integrando sistemas com Kafka: uma breve introdução&body=Check out this article: https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&title=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&title=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&title=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&title=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&name=Integrando sistemas com Kafka: uma breve introdução&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/integrando-sistemas-com-kafka-introducao/&t=Integrando sistemas com Kafka: uma breve introdução"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Danilo Soares Frois Cardoso
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

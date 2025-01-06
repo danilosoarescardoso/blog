@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang=pt>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="IntroduçãoSegurança é um assunto que está sempre em alta, seja quando usamos um aplicativo de lazer como Instagram ou acessando nossos dados bancários no computador e celular. Com o advento da Lei Ger">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Aumentando a segurança de APIs com JWT - Conceitos">
+<meta property="og:url" content="https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/index.html">
+<meta property="og:site_name" content="Blog do Frois">
+<meta property="og:description" content="IntroduçãoSegurança é um assunto que está sempre em alta, seja quando usamos um aplicativo de lazer como Instagram ou acessando nossos dados bancários no computador e celular. Com o advento da Lei Ger">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://danilocardoso.dev/blog/aumentando-seguranca-apis-com-jwt-conceitos/client-server.png">
+<meta property="og:image" content="https://danilocardoso.dev/blog/aumentando-seguranca-apis-com-jwt-conceitos/oidc.png">
+<meta property="og:image" content="https://danilocardoso.dev/blog/aumentando-seguranca-apis-com-jwt-conceitos/auth_code.png">
+<meta property="og:image" content="https://danilocardoso.dev/blog/aumentando-seguranca-apis-com-jwt-conceitos/client_credentials.png">
+<meta property="og:image" content="https://danilocardoso.dev/blog/aumentando-seguranca-apis-com-jwt-conceitos/jwt-bearer.png">
+<meta property="article:published_time" content="2021-07-15T20:25:14.000Z">
+<meta property="article:modified_time" content="2025-01-06T14:11:02.566Z">
+<meta property="article:author" content="Danilo Soares Frois Cardoso">
+<meta property="article:tag" content="apis">
+<meta property="article:tag" content="segurança">
+<meta property="article:tag" content="oauth">
+<meta property="article:tag" content="jwt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://danilocardoso.dev/blog/aumentando-seguranca-apis-com-jwt-conceitos/client-server.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Aumentando a segurança de APIs com JWT - Conceitos</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/blog/pandemia-inovacao-api-first-2021/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Seguinte" href="/blog/resumao-para-certificacao-az-900/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
+      <span id="i-top" class="info" style="display:none;">Acima</span>
+      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&text=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&title=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&is_video=false&description=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Aumentando a segurança de APIs com JWT - Conceitos&body=Check out this article: https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&title=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&title=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&title=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&title=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&name=Aumentando a segurança de APIs com JWT - Conceitos&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&t=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introducao"><span class="toc-number">1.</span> <span class="toc-text">Introdução</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conceitos"><span class="toc-number">2.</span> <span class="toc-text">Conceitos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Comunicacao-cliente-servidor"><span class="toc-number">2.1.</span> <span class="toc-text">Comunicação cliente - servidor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OAuth-2-0"><span class="toc-number">2.2.</span> <span class="toc-text">OAuth 2.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT"><span class="toc-number">2.3.</span> <span class="toc-text">JWT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grant-Types"><span class="toc-number">3.</span> <span class="toc-text">Grant Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Para-finalizar"><span class="toc-number">3.1.</span> <span class="toc-text">Para finalizar</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Aumentando a segurança de APIs com JWT - Conceitos
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-07-15T20:25:14.000Z" class="dt-published" itemprop="datePublished">2021-07-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/apis/" rel="tag">apis</a>, <a class="p-category" href="/blog/tags/jwt/" rel="tag">jwt</a>, <a class="p-category" href="/blog/tags/oauth/" rel="tag">oauth</a>, <a class="p-category" href="/blog/tags/seguranca/" rel="tag">segurança</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="Introducao"><a href="#Introducao" class="headerlink" title="Introdução"></a>Introdução</h2><p>Segurança é um assunto que está sempre em alta, seja quando usamos um aplicativo de lazer como Instagram ou acessando nossos dados bancários no computador e celular. Com o advento da <a target="_blank" rel="noopener" href="https://www.serpro.gov.br/lgpd/menu/a-lgpd/o-que-muda-com-a-lgpd">Lei Geral de Proteção de Dados (LGPD)</a>, a forma como sistemas lidam com informações de usuários se tornou uma questão altamente crítica, não importando o tamanho da empresa.</p>
+<p>Com isso, muitas empresas passaram a dispender mais dinheiro e recursos para que os dados de seus clientes estejam seguros. Isso é uma proteção não só para o usuário final como para as instituições, prevenindo uma série de impactos em sua reputação, finanças e etc.</p>
+<p>Como lidei bastante com assuntos de segurança de APIs nos últimos tempos, resolvi criar algumas publicações mostrando ferramentas e técnicas de criptografia que permitem uma melhor segurança para APIs e como elas podem ser implementadas no dia-a-dia.</p>
+<h2 id="Conceitos"><a href="#Conceitos" class="headerlink" title="Conceitos"></a>Conceitos</h2><p>O primeiro passo para proteger uma API é conhecer as técnicas que existem. Apesar de haver formas mais simples como o <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc7617">Basic Auth</a>, vou partir do princípio de que precisamos de algo mais seguro, seguindo os padrões mais modernos da <em>Internet Engineering Task Force</em>. Por ser um assunto denso, darei um breve resumo sobre tópicos que considero importantes e como são usados, mas vale ressaltar: tem muito mais coisa pra conhecer e estudar.</p>
+<h3 id="Comunicacao-cliente-servidor"><a href="#Comunicacao-cliente-servidor" class="headerlink" title="Comunicação cliente - servidor"></a>Comunicação cliente - servidor</h3><p>Sempre que falamos de autenticação com os padrões OAuth, estamos falando de uma comunicação baseada na arquitetura cliente - servidor, isto é, um cliente solicitando informações para um servidor. Por mais complexas que as estruturas sejam, elas sempre vão se basear nesse tipo de arquitetura. Existe uma opção usada em sistemas legados e soluções empresariais que é o SAML, mas vou focar nas soluções baseadas em HTTP.</p>
+<img src="/blog/aumentando-seguranca-apis-com-jwt-conceitos/client-server.png" class="" title="[Figura 1 - Comunicação cliente - servidor]">
+<p>Figura 1 - Comunição básica cliente - servidor</p>
+<h3 id="OAuth-2-0"><a href="#OAuth-2-0" class="headerlink" title="OAuth 2.0"></a>OAuth 2.0</h3><p>O protocolo <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc6749">OAuth 2.0</a>, lançado em 2006, é uma evolução do OAuth. Ele é definido como um padrão aberto de autorização. Seu foco é a delegação de acesso à APIs. Dentro do framework OAuth 2.0 existem quatro atores principais:</p>
+<p>● <strong>Resource Owner:</strong> entidade capaz de dar acesso à um recurso protegido (pode ser o usuário final).</p>
+<p>● <strong>Resource Server:</strong> servidor que armazena os recursos protegidos. O acesso a ele é feito através de tokens.</p>
+<p>● <strong>Client:</strong> uma aplicação que solicita recursos protegidos, através da autorização do dono.</p>
+<p>● <strong>Authorization Server:</strong> servidor que emite tokens de acesso ao <em>client</em>, depois da autenticação e obtenção da autorização.</p>
+<p>Vale ressaltar que a comunicação no OAuth 2.0 é feita utilizando JSONs. Quando uma API é protegida com esse protocolo, as requisições precisam de um header do tipo <em>Authorization</em> com um JWT como valor.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.linkedin.com/pulse/aspnet-core-jwt-bearer-token-claims-roles-policies-alex-tochetto/">OIDC 1.0</a></strong></p>
+<p>O OpenID Connect 1.0 é uma camada de identificação que fica no topo do protocolo OAuth 2.0. Ela permite validar um usuário através de autenticação em um servidor de autorização OAuth 2.0, bem como obter informações básicas de perfil desse usuário através de endpoints REST. Também permite que seja possível autenticar diferentes usando tipos de <em>clients</em> (web, mobile, etc). Para isso, existe uma série de especificações que definem alguns processos de como o OIDC deve ser implementado e funcionar, sendo alguns deles:</p>
+<ol>
+<li><strong><a target="_blank" rel="noopener" href="https://openid.net/specs/openid-connect-registration-1_0.html">Dynamic Client Registration (DCR)</a></strong>: define padrões de como um client pode ser cadastrado via endpoints REST;</li>
+<li><strong><a target="_blank" rel="noopener" href="https://openid.net/specs/openid-connect-core-1_0.html">Core</a></strong>: Define o funcionamento do OIDC e como a autenticação deve ser feita.</li>
+<li><strong><a target="_blank" rel="noopener" href="https://openid.net/specs/openid-connect-discovery-1_0.html">Discovery</a></strong>: descreve como clientes podem descobrir informações sobre provedores OpenID de forma dinâmica.</li>
+</ol>
+<img src="/blog/aumentando-seguranca-apis-com-jwt-conceitos/oidc.png" class="" title="[Figura 5 - OIDC 1.0 e suas particularidades]">
+<p>Figura 2 - OIDC 1.0 e suas particularidades</p>
+<h3 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h3><p>Os <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc7519">JSON Web Tokens</a> - ou JWTs - são um meio de representação de autoridade que podem ser trafegados entre duas partes. São URL <em>safe</em>, o que significa que podem ser trafegados em URLs sem que haja problemas de <em>encoding</em>. As autoridades (<em>claims</em>) dentro do JWT são codificadas em um objeto JSON que é usado como <em>payload.</em> Esse payload pode ser assinado digitalmente (JWS) ou encriptado (JWE). Com isso é possível assinar digitalmente o payload, evitando que ele seja lido por qualquer um.</p>
+<h2 id="Grant-Types"><a href="#Grant-Types" class="headerlink" title="Grant Types"></a>Grant Types</h2><p>São os tipos de autenticação possíveis de serem feitos. Cada tipo de autorização possui passos para que a autoridade de consumo seja consentida. Os tipos mais conhecidos são:</p>
+<p><strong>1. Authorization Code</strong></p>
+<p>Esse fluxo é utilizado por clientes públicos e privados, no qual eles precisam trocar um código de autorização (<em>authorization code</em>) em troca de um código de acesso (access token).</p>
+<p>Esse <em>authorization code</em> é obtido através de um redirecionamento feito para o serviço de autenticação, onde o usuário se loga. Nesse redirecionamento é passado um <em>callback</em>, que será chamado quando a autenticação for efetuada com sucesso. </p>
+<p>Ao retornar para o serviço que solicitou o <em>authorization code</em>, ele poderá chamar o servidor de autorização novamente, dessa vez solicitando um <em>access token</em>. Esse <em>access token</em>, conforme já falamos mais acima, é quem permitirá o acesso ao recurso desejado.</p>
+<img src="/blog/aumentando-seguranca-apis-com-jwt-conceitos/auth_code.png" class="" title="[Figura 2 - Fluxo de *authorization code*]">
+<p>Figura 3 - Fluxo de <em>authorization code</em></p>
+<p><strong>2. Client Credentials</strong></p>
+<p>Enquanto o fluxo de <em>authorization code</em> é feito para autorizar usuários, existe uma forma de autenticar aplicações, fluxo que alguns chamam de <em>machine to machine</em> (M2M). Esse método é usado quando não precisamos de um usuário específico. Para isso, é necessário que o cliente tenha sido cadastrado anteriormente no servidor de autorização. No momento do cadastro será gerado um <em>client_id</em> e um <em>client_secret</em>, parâmetros que serão usados para solicitar1 um <em>access token</em> diretamente, sem tantos redirecionamentos. </p>
+<img src="/blog/aumentando-seguranca-apis-com-jwt-conceitos/client_credentials.png" class="" title="[Figura 3 - Fluxo de client credentials]">
+<p>Figura 4 - Fluxo de client credentials</p>
+<p><strong>3. <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc7523">JWT Bearer</a></strong></p>
+<p>Esse não é o método de autorização mais conhecido ou usado - tanto que é difícil achar exemplos de implementação dele na internet - mas como utilizei em algumas implementações que fiz, achei válido falar dele. </p>
+<p>Esse fluxo é utilizado quando não se deseja trafegar dados sensíveis dos usuários por meio de <em>requests</em>. Dessa forma, a identificação do usuário é feita por meio de um JWT assinado que é enviado ao servidor de autorização informando os dados da pessoa que será autenticada. Esse token geralmente é assinado com uma chave privada, sendo que seu conteúdo só poderá ser acessado caso quem deseje lê-lo tenha a chave pública que faz par com a privada. </p>
+<p>Para que o servidor de autorização consiga validar o JWT assinado, é necessário que a chave pública que faz par com a chave privada durante a assinatura esteja cadastrada no servidor de autorização. Existe algumas especificidades na hora de manipular esse token que mostrarei na hora de apresentar as implementações no código.</p>
+<img src="/blog/aumentando-seguranca-apis-com-jwt-conceitos/jwt-bearer.png" class="" title="[Figura 4 - Fluxo de JWT Bearer]">
+<p>Figura 5 - Fluxo de JWT Bearer</p>
+<hr>
+<h3 id="Para-finalizar"><a href="#Para-finalizar" class="headerlink" title="Para finalizar"></a>Para finalizar</h3><p>Acredito que esses sejam bons conteúdos para começar a entender como podemos aplicar segurança em APIs utilizando JWTs, OAuth 2.0 e outros protocolos. No próximo post farei algumas implementações para mostrar como isso pode ser feito utilizando Java e outras tecnologias.</p>
+<p>Deixo para estudo alguns links muito importantes que me ajudaram a produzir esse artigo. Boa leitura!</p>
+<p><a target="_blank" rel="noopener" href="https://developer.orange.com/tech_guide/openid-connect-1-0/">OpenID Connect 1.0 - Identity &amp; Authentication</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.brunobrito.net.br/jose-jwt-jws-jwe-jwa-jwk-jwks/">Componentes do JWT (JWS, JWE, JWA, JWK, JWKS)</a></p>
+<p><a target="_blank" rel="noopener" href="https://openid.net/">OpenID.net</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.linkedin.com/pulse/aspnet-core-jwt-bearer-token-claims-roles-policies-alex-tochetto/">ASP.NET Core - JWT Bearer Token - Claims, Roles and Policies</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">Início</a></li>
+        
+          <li><a href="/blog/about/">Sobre</a></li>
+        
+          <li><a href="/blog/archives/">Artigos</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introducao"><span class="toc-number">1.</span> <span class="toc-text">Introdução</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conceitos"><span class="toc-number">2.</span> <span class="toc-text">Conceitos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Comunicacao-cliente-servidor"><span class="toc-number">2.1.</span> <span class="toc-text">Comunicação cliente - servidor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OAuth-2-0"><span class="toc-number">2.2.</span> <span class="toc-text">OAuth 2.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT"><span class="toc-number">2.3.</span> <span class="toc-text">JWT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grant-Types"><span class="toc-number">3.</span> <span class="toc-text">Grant Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Para-finalizar"><span class="toc-number">3.1.</span> <span class="toc-text">Para finalizar</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&text=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&title=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&is_video=false&description=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Aumentando a segurança de APIs com JWT - Conceitos&body=Check out this article: https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&title=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&title=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&title=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&title=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&name=Aumentando a segurança de APIs com JWT - Conceitos&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/aumentando-seguranca-apis-com-jwt-conceitos/&t=Aumentando a segurança de APIs com JWT - Conceitos"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Danilo Soares Frois Cardoso
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

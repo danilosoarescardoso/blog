@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang=pt>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Recentemente estava estudando sobre como funciona a autenticação de APIs usando HMAC e resolvi fazer um texto explicando sobre como esse modelo de segurança para APIs opera, trazendo seus prós, contra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autenticando APIs com HMAC">
+<meta property="og:url" content="https://danilocardoso.dev/autenticando-apis-com-hmac/index.html">
+<meta property="og:site_name" content="Blog do Frois">
+<meta property="og:description" content="Recentemente estava estudando sobre como funciona a autenticação de APIs usando HMAC e resolvi fazer um texto explicando sobre como esse modelo de segurança para APIs opera, trazendo seus prós, contra">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://danilocardoso.dev/blog/autenticando-apis-com-hmac/hmac-auth.drawio.png">
+<meta property="article:published_time" content="2023-08-06T22:10:53.000Z">
+<meta property="article:modified_time" content="2025-01-06T14:11:02.568Z">
+<meta property="article:author" content="Danilo Soares Frois Cardoso">
+<meta property="article:tag" content="apis">
+<meta property="article:tag" content="2023">
+<meta property="article:tag" content="segurança">
+<meta property="article:tag" content="hmac">
+<meta property="article:tag" content="arquitetura">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://danilocardoso.dev/blog/autenticando-apis-com-hmac/hmac-auth.drawio.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Autenticando APIs com HMAC</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/blog/integrando-sistemas-com-kafka-introducao/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Seguinte" href="/blog/api-design-first-definindo-capacidades-digitais/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
+      <span id="i-top" class="info" style="display:none;">Acima</span>
+      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/autenticando-apis-com-hmac/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&text=Autenticando APIs com HMAC"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&title=Autenticando APIs com HMAC"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&is_video=false&description=Autenticando APIs com HMAC"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Autenticando APIs com HMAC&body=Check out this article: https://danilocardoso.dev/autenticando-apis-com-hmac/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&title=Autenticando APIs com HMAC"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&title=Autenticando APIs com HMAC"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&title=Autenticando APIs com HMAC"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&title=Autenticando APIs com HMAC"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&name=Autenticando APIs com HMAC&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/autenticando-apis-com-hmac/&t=Autenticando APIs com HMAC"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-e-HMAC"><span class="toc-number">1.</span> <span class="toc-text">O que é HMAC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HMAC-em-APIs"><span class="toc-number">2.</span> <span class="toc-text">HMAC em APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Como-funciona-a-validacao-no-HMAC"><span class="toc-number">3.</span> <span class="toc-text">Como funciona a validação no HMAC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consideracoes-sobre-a-autenticacao-HMAC"><span class="toc-number">4.</span> <span class="toc-text">Considerações sobre a autenticação HMAC</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Autenticando APIs com HMAC
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-08-06T22:10:53.000Z" class="dt-published" itemprop="datePublished">2023-08-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/2023/" rel="tag">2023</a>, <a class="p-category" href="/blog/tags/apis/" rel="tag">apis</a>, <a class="p-category" href="/blog/tags/arquitetura/" rel="tag">arquitetura</a>, <a class="p-category" href="/blog/tags/hmac/" rel="tag">hmac</a>, <a class="p-category" href="/blog/tags/seguranca/" rel="tag">segurança</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Recentemente estava estudando sobre como funciona a autenticação de APIs usando HMAC e resolvi fazer um texto explicando sobre como esse modelo de segurança para APIs opera, trazendo seus prós, contras e indicações de uso.</p>
+<h2 id="O-que-e-HMAC"><a href="#O-que-e-HMAC" class="headerlink" title="O que é HMAC"></a>O que é HMAC</h2><p>Dentro da área de segurança da informação, um MAC é considerado um ** código autenticador de mensagem** - o termo significa <em>message authentication code</em> em inglês. Geralmente um algoritmo de criptografia MAC recebe uma chave secreta - que pode ser qualquer série de caracteres - e uma mensagem que será autenticada. O resultado do processamento da mensagem com a chave secreta é uma <em>string</em> única que será enviada para o consumidor dessa mensagem, junto com a mensagem original. </p>
+<p>Para que o consumidor valide a integridade da mensagem recebida, ele deverá receber previamente a chave secreta e qual algoritmo de criptografia que foi utilizado para gerar o hash.</p>
+<h2 id="HMAC-em-APIs"><a href="#HMAC-em-APIs" class="headerlink" title="HMAC em APIs"></a>HMAC em APIs</h2><p>No mundo de APIs, esse processo de gerar uma <em>string</em> e enviar para os consumidores é conhecido como HMAC, ou <em>Hash-based message authentication code</em> em inglês - <strong>código de autenticação de mensagem baseado em Hash</strong> em português. Sabe quando você precisa de um token pra usar uma API? Então, existem várias formas de obter e gerar tokens. Na autenticação HMAC, o token a ser utilizado para validar a autenticidade da mensagem e do seu emissor é feito utilizando essa string. Agora vamos ver como essa validação é feita.</p>
+<h2 id="Como-funciona-a-validacao-no-HMAC"><a href="#Como-funciona-a-validacao-no-HMAC" class="headerlink" title="Como funciona a validação no HMAC"></a>Como funciona a validação no HMAC</h2><p>Com HMAC, ao invés de você enviar um token OAuth, com escopos, permissões e informações do remetente, o token enviado é a hash que expliquei anteriormente. A ideia desse token não é a de garantir a autenticidade do remetente, mas sim garantir que a mensagem recebida está consistente com o que foi enviado pelo remetente. Até existem casos de uso onde OAuth e HMAC são combinados, mas não existe uma obrigatoriedade. </p>
+<p>Como dito anteriormente, a hash é enviada junto com a mensagem para validação. Quando a mensagem é recebida, o destinatário já deve ter a chave secreta em mãos para cifrar a mensagem. Com isso ele vai gerar uma nova hash e compará-la com a hash recebida na requisição. Se as duas forem iguais, ele aceita a mensagem. Se não, a descarta.</p>
+<p>Na imagem abaixo o fluxo é descrito de forma visual para facilitar o entendimento:</p>
+<img src="/blog/autenticando-apis-com-hmac/hmac-auth.drawio.png" class="">
+
+<h2 id="Consideracoes-sobre-a-autenticacao-HMAC"><a href="#Consideracoes-sobre-a-autenticacao-HMAC" class="headerlink" title="Considerações sobre a autenticação HMAC"></a>Considerações sobre a autenticação HMAC</h2><p>Apesar de ser uma alternativa à autenticação OAuth, tenho algumas considerações a serem feitas na hora de usar algo como HMAC:</p>
+<ul>
+<li><strong>Gestão de chaves</strong>. Para que haja uma boa governança do processo de autenticação HMAC, é necessário gerenciar de maneira eficiente as diferentes chaves a serem compartilhadas com seus parceiros. Diferente de uma autenticação OAuth 2.0 que possui um ator somente para fazer isso - o servidor de autenticação - trabalhar com HMAC demanda a gestão dessas chaves por conta própria. Pelo menos não encontrei nos meus estudos uma ferramenta de autenticação que faça a gestão das chaves por default.</li>
+<li><strong>Não possui confidencialidade</strong>. Diferente de OAuth onde podemos usar métodos de autenticação como o jwt-bearer, que encripta o payload para evitar vazamento de informações confidenciais, por exemplo, no HMAC a mensagem vai do jeito que ela foi escrita. A ideia do HMAC não é aumentar a confidencialidade, mas sim garantir a integridade da mensagem escrita pelo remetente. </li>
+<li><strong>Sobrecarga de desempenho</strong>. Trabalhar com algoritmos de criptografia, apesar de aumentar a segurança de suas aplicações, gera maior necessidade de processamento computacional. Em transanções em tempo real (RT) ou quase em tempo real (NRT) isso pode ser um baita problema. É necessário levar esse ponto em consideração.</li>
+<li><strong>Não garante a autenticidade do remetente</strong>. Apesar de haver uma chave secreta compartilhada apenas entre remetente e destinatário, não é possível garantir que o remetente é realmente quem esperamos que ele seja no HMAC. Isso porque qualquer atacante pode tomar conta de uma chave secreta e se passar pelo remetente. Nesse caso autenticações com certificado digital ou fluxo de <em>client credentials</em> ajudam a aumentar a segurança de suas APIs, garantindo que o remetente é realmente quem ele diz ser.</li>
+</ul>
+<p>Apesar desses pontos, existem algumas características quem podem fazer o HMAC ser útil na sua estratégia de APIs em determinados casos de uso, como por exemplo:</p>
+<ul>
+<li><strong>Camada adicional contra ataques DDoS</strong>. Uma das formas de implementar HMAC é incluindo o timestamp do momento da requisição. Com isso, apenas uma requisição será aceita pelo servidor caso todas as informações estejam certas, já que as subsequentes requisições em DDoS terão timestamps diferentes.</li>
+<li><strong>Garantia de integridade do payload</strong>. Podem haver casos de uso específicos onde garantir a não alteração do payload durante a sua transmissão seja importante. No meu ponto de vista, isso pode ser adicionado como camada adicional de segurança em um fluxo OAuth 2.0 desde que haja o conhecido risco de um payload ser modificado.</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">Início</a></li>
+        
+          <li><a href="/blog/about/">Sobre</a></li>
+        
+          <li><a href="/blog/archives/">Artigos</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-e-HMAC"><span class="toc-number">1.</span> <span class="toc-text">O que é HMAC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HMAC-em-APIs"><span class="toc-number">2.</span> <span class="toc-text">HMAC em APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Como-funciona-a-validacao-no-HMAC"><span class="toc-number">3.</span> <span class="toc-text">Como funciona a validação no HMAC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consideracoes-sobre-a-autenticacao-HMAC"><span class="toc-number">4.</span> <span class="toc-text">Considerações sobre a autenticação HMAC</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/autenticando-apis-com-hmac/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&text=Autenticando APIs com HMAC"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&title=Autenticando APIs com HMAC"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&is_video=false&description=Autenticando APIs com HMAC"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Autenticando APIs com HMAC&body=Check out this article: https://danilocardoso.dev/autenticando-apis-com-hmac/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&title=Autenticando APIs com HMAC"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&title=Autenticando APIs com HMAC"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&title=Autenticando APIs com HMAC"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&title=Autenticando APIs com HMAC"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/autenticando-apis-com-hmac/&name=Autenticando APIs com HMAC&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/autenticando-apis-com-hmac/&t=Autenticando APIs com HMAC"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Danilo Soares Frois Cardoso
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

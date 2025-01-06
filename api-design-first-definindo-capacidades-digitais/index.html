@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang=pt>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Quando abordamos a visão de API como Produto, trazemos alguns conceitos que nos permitam focar em atender as dores do usuário. O primeiro passo nesse caminho, de acordo com a literatura de James Higgi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API Design First: definindo as capacidades digitais">
+<meta property="og:url" content="https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/index.html">
+<meta property="og:site_name" content="Blog do Frois">
+<meta property="og:description" content="Quando abordamos a visão de API como Produto, trazemos alguns conceitos que nos permitam focar em atender as dores do usuário. O primeiro passo nesse caminho, de acordo com a literatura de James Higgi">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://danilocardoso.dev/blog/api-design-first-definindo-capacidades-digitais/capacidades-digitais.png">
+<meta property="article:published_time" content="2023-05-22T17:06:56.000Z">
+<meta property="article:modified_time" content="2025-01-06T14:11:02.555Z">
+<meta property="article:author" content="Danilo Soares Frois Cardoso">
+<meta property="article:tag" content="api first">
+<meta property="article:tag" content="api design first">
+<meta property="article:tag" content="apis">
+<meta property="article:tag" content="2023">
+<meta property="article:tag" content="tecnologia">
+<meta property="article:tag" content="desenvolvimento">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://danilocardoso.dev/blog/api-design-first-definindo-capacidades-digitais/capacidades-digitais.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>API Design First: definindo as capacidades digitais</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/blog/autenticando-apis-com-hmac/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Seguinte" href="/blog/api-design-first-passo-a-passo/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
+      <span id="i-top" class="info" style="display:none;">Acima</span>
+      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&text=API Design First: definindo as capacidades digitais"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&title=API Design First: definindo as capacidades digitais"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&is_video=false&description=API Design First: definindo as capacidades digitais"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=API Design First: definindo as capacidades digitais&body=Check out this article: https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&title=API Design First: definindo as capacidades digitais"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&title=API Design First: definindo as capacidades digitais"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&title=API Design First: definindo as capacidades digitais"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&title=API Design First: definindo as capacidades digitais"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&name=API Design First: definindo as capacidades digitais&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&t=API Design First: definindo as capacidades digitais"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Resumo"><span class="toc-number">1.</span> <span class="toc-text">Resumo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Resumo-das-etapas"><span class="toc-number">1.1.</span> <span class="toc-text">Resumo das etapas</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pre-requisitos"><span class="toc-number">2.</span> <span class="toc-text">Pré-requisitos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-sao-capacidades-digitais"><span class="toc-number">3.</span> <span class="toc-text">O que são capacidades digitais</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Entendendo-Job-Stories"><span class="toc-number">4.</span> <span class="toc-text">Entendendo Job Stories</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Estrutura-de-uma-Job-Story"><span class="toc-number">4.1.</span> <span class="toc-text">Estrutura de uma Job Story</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exemplo-de-um-job-story"><span class="toc-number">4.2.</span> <span class="toc-text">Exemplo de um job story</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Como-obter-e-armazenar-jobs-stories"><span class="toc-number">4.3.</span> <span class="toc-text">Como obter e armazenar jobs stories</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-proximo-passo"><span class="toc-number">5.</span> <span class="toc-text">O próximo passo</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        API Design First: definindo as capacidades digitais
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-05-22T17:06:56.000Z" class="dt-published" itemprop="datePublished">2023-05-22</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/2023/" rel="tag">2023</a>, <a class="p-category" href="/blog/tags/api-design-first/" rel="tag">api design first</a>, <a class="p-category" href="/blog/tags/api-first/" rel="tag">api first</a>, <a class="p-category" href="/blog/tags/apis/" rel="tag">apis</a>, <a class="p-category" href="/blog/tags/desenvolvimento/" rel="tag">desenvolvimento</a>, <a class="p-category" href="/blog/tags/tecnologia/" rel="tag">tecnologia</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Quando abordamos a visão de <strong>API como Produto</strong>, trazemos alguns conceitos que nos permitam focar em atender as dores do usuário. O primeiro passo nesse caminho, de acordo com a <a target="_blank" rel="noopener" href="https://www.amazon.com.br/Principles-Web-Design-James-Higginbotham/dp/0137355637">literatura de James Higginbotham</a>, é o de definir quais são as capacidades digitais esperadas para esse produto. </p>
+<h2 id="Resumo"><a href="#Resumo" class="headerlink" title="Resumo"></a>Resumo</h2><ul>
+<li>Para melhor entendimento deste texto, garanta que você conhece os termos citados nos <strong>Pré-Requisitos</strong></li>
+<li><strong>Capacidades digitais</strong> são os recursos tecnológicos que entregarão os outcomes - resultados - esperados pela pessoa cliente de sua API</li>
+<li><strong>Outcomes</strong> são os resultados que o cliente espera receber ao usar sua API ou produto digital</li>
+<li><strong>Job Stories</strong> é uma metodologia usada para descobrir quais são as capacidades digitais que seu produto precisa ter através das necessidades da pessoa cliente.</li>
+</ul>
+<h3 id="Resumo-das-etapas"><a href="#Resumo-das-etapas" class="headerlink" title="Resumo das etapas"></a>Resumo das etapas</h3><ul>
+<li>Defina os <strong>outcomes</strong> desejados pelo seu cliente</li>
+<li>Com os <strong>outcomes</strong>, escreva <strong>job stories</strong></li>
+<li>Com os <strong>job stories</strong>, temos definidas as <strong>capacidades digitais</strong> esperadas para nossa API relacionadas com os respectivos <strong>outcomes</strong></li>
+<li><strong>Armazene</strong> seus job stories de uma forma que o time de desenvolvimento consiga entender porque aquelas capacidades foram definidas anteriormente</li>
+</ul>
+<h2 id="Pre-requisitos"><a href="#Pre-requisitos" class="headerlink" title="Pré-requisitos"></a>Pré-requisitos</h2><p>Para entender o conceito de API First e tirar máximo proveito, indicamos que alguns conhecimentos sejam estabelecidos previamente:</p>
+<ul>
+<li>Métodos HTTP</li>
+<li>Verbos HTTP</li>
+<li>Princípios básicos do Protocolo HTTP</li>
+</ul>
+<blockquote>
+<p>Para aprender estes e outros termos, leia o texto: <a href="https://danilocardoso.dev/blog/apis-pessoas-negocio-termos-tecnicos/">APIs para Pessoas de Negócio: Termos técnicos essenciais</a></p>
+</blockquote>
+<img src="/blog/api-design-first-definindo-capacidades-digitais/capacidades-digitais.png" class="">
+
+<h2 id="O-que-sao-capacidades-digitais"><a href="#O-que-sao-capacidades-digitais" class="headerlink" title="O que são capacidades digitais"></a>O que são capacidades digitais</h2><p>As <strong>capacidades digitais</strong> são recursos que entregam <em>outcomes</em> (resultados esperados) através de automação. É uma forma dos clientes interagirem com sua organização através de um meio digital. Para o usuário final, não importa o que será feito para alcançar os <em><strong>outcomes</strong></em>. Por baixo dos passos, inúmeras tecnologias e técnicas podem ser utilizadas para que o <em>outcome</em> seja alcançado. </p>
+<p>Abaixo temos um exemplo do que poderiam ser capacidades digitais para um sistema de apostas online:</p>
+<table>
+<thead>
+<tr>
+<th>Capacidade digital</th>
+<th>Endpoint REST</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Executar uma aposta online</td>
+<td>POST &#x2F;apostas</td>
+</tr>
+<tr>
+<td>Checar o resultado de uma aposta</td>
+<td>GET &#x2F;apostas&#x2F;{idAposta}</td>
+</tr>
+<tr>
+<td>Checar apostas em um determinado time</td>
+<td>GET &#x2F;apostas&#x2F;times&#x2F;{nomeTime}</td>
+</tr>
+</tbody></table>
+<p>No exemplo acima temos três capacidades que um produto digital relacionado a apostas se propõe a ter. Essas capacidades podem ser estabelecidas utilizando uma API REST, que pode entregar tecnologicamente o <em>outcome</em> para as capacidades. </p>
+<p>Agora que você sabe o que são capacidades digitais, podemos entender de que forma elas podem ser identificadas. Para isso, a estratégia recomendada por James é a de usarmos <strong>Job Stories</strong>, baseada na metodologia <em><strong>Jobs do Be Done (JTBD)</strong></em>.</p>
+<h2 id="Entendendo-Job-Stories"><a href="#Entendendo-Job-Stories" class="headerlink" title="Entendendo Job Stories"></a>Entendendo Job Stories</h2><p><em>Job Stories</em> é uma técnica que visa traduzir a necessidade do cliente em capacidades digitais. Essa técnica toma como base o conceito de “Jobs to be Done”, criado por Clayton Christensen. Nela, procuramos entender quais serão as jornadas - ou jobs to be done - que o usuário executará em nosso produto. </p>
+<p>No caso de APIs, a proposta feita por James é de criarmos job stories descrevendo essas jornadas. Dessa forma conseguiremos traduzir cada um dos JTBD em requisitos funcionais para a API. </p>
+<h3 id="Estrutura-de-uma-Job-Story"><a href="#Estrutura-de-uma-Job-Story" class="headerlink" title="Estrutura de uma Job Story"></a>Estrutura de uma Job Story</h3><p>Uma job story possui três divisões: “Quando, eu quero, então poderei.” Elas servem para:</p>
+<ul>
+<li><strong>Quando</strong>: o <strong>evento</strong> que irá desencadear o <em>outcome</em> esperado pela pessoa usuária. São indicadores-chave de quando a API será usada.</li>
+<li><strong>Eu quero</strong>: A <strong>capacidade</strong> identificada pela pessoa cliente como <strong>ação a ser tomada</strong>. Essa informação será usada para entender quais operações serão realizadas pela API.</li>
+<li><strong>Então poderei</strong>: O outcome esperado pela pessoa cliente. É o campo que definirá o critério de aceitação para a API desenhada.</li>
+</ul>
+<p>Na minha concepção, o conceito fica mais claro se adotarmos a seguinte nomenclatura tropicalizada:</p>
+<table>
+<thead>
+<tr>
+<th>Termo original</th>
+<th>Versão tropicalizada</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Quando</td>
+<td>necessidade</td>
+</tr>
+<tr>
+<td>Eu quero</td>
+<td>capacidade</td>
+</tr>
+<tr>
+<td>Então poderei</td>
+<td>resultado</td>
+</tr>
+</tbody></table>
+<h3 id="Exemplo-de-um-job-story"><a href="#Exemplo-de-um-job-story" class="headerlink" title="Exemplo de um job story"></a>Exemplo de um job story</h3><p>Pedi pro ChatGPT montar um exemplo de <em>job story</em>. O resultado foi o seguinte:</p>
+<blockquote>
+<p>Claro! Vamos pensar em uma aplicação para pedir comida online. Uma “job story” para essa situação pode ser:</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>Quando <strong>(eu chego tarde do trabalho)</strong>,</li>
+</ul>
+</blockquote>
+<ul>
+<li>Eu quero <strong>(pedir uma refeição através de um aplicativo)</strong>,</li>
+<li>Então poderei <strong>(ter uma refeição pronta quando eu chegar em casa)</strong>.</li>
+</ul>
+<blockquote>
+<p>Essa job story ajuda a <strong>equipe de desenvolvimento</strong> a entender um cenário de uso realista, podendo se concentrar em facilitar esse processo para seus usuários. Eles podem trabalhar para garantir que o aplicativo permita pedidos antecipados e forneça uma estimativa precisa do tempo de entrega, por exemplo.</p>
+</blockquote>
+<h3 id="Como-obter-e-armazenar-jobs-stories"><a href="#Como-obter-e-armazenar-jobs-stories" class="headerlink" title="Como obter e armazenar jobs stories"></a>Como obter e armazenar jobs stories</h3><p>James Higginbotham dá algumas dicas legais de como obter job stories para seu projeto de API. Das que ele cita em seu livro, a que acho mais interessante é a de guardar as jobs stories em arquivos markdown.</p>
+<p>Dessa forma é possível guardar um histórico das mudanças que uma API teve junto do seu repositório de código-fonte, permitindo que o desenvolvedor entenda o caminho que foi percorrido até aquela API ser feita. </p>
+<p>Para obtenção das job stories, acredito que um simples arquivo de texto ou formulário já resolvam, já que o mais importante é ter esses dados para os próximos passos do design de sua API. </p>
+<h2 id="O-proximo-passo"><a href="#O-proximo-passo" class="headerlink" title="O próximo passo"></a>O próximo passo</h2><p>Depois de as <strong>capacidades digitais</strong> e <strong>job stories</strong> da sua API, chega a hora de definirmos as <strong>Atividades e Passos</strong>. O texto será disponibilizado em breve.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">Início</a></li>
+        
+          <li><a href="/blog/about/">Sobre</a></li>
+        
+          <li><a href="/blog/archives/">Artigos</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Resumo"><span class="toc-number">1.</span> <span class="toc-text">Resumo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Resumo-das-etapas"><span class="toc-number">1.1.</span> <span class="toc-text">Resumo das etapas</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pre-requisitos"><span class="toc-number">2.</span> <span class="toc-text">Pré-requisitos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-sao-capacidades-digitais"><span class="toc-number">3.</span> <span class="toc-text">O que são capacidades digitais</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Entendendo-Job-Stories"><span class="toc-number">4.</span> <span class="toc-text">Entendendo Job Stories</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Estrutura-de-uma-Job-Story"><span class="toc-number">4.1.</span> <span class="toc-text">Estrutura de uma Job Story</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exemplo-de-um-job-story"><span class="toc-number">4.2.</span> <span class="toc-text">Exemplo de um job story</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Como-obter-e-armazenar-jobs-stories"><span class="toc-number">4.3.</span> <span class="toc-text">Como obter e armazenar jobs stories</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-proximo-passo"><span class="toc-number">5.</span> <span class="toc-text">O próximo passo</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&text=API Design First: definindo as capacidades digitais"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&title=API Design First: definindo as capacidades digitais"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&is_video=false&description=API Design First: definindo as capacidades digitais"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=API Design First: definindo as capacidades digitais&body=Check out this article: https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&title=API Design First: definindo as capacidades digitais"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&title=API Design First: definindo as capacidades digitais"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&title=API Design First: definindo as capacidades digitais"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&title=API Design First: definindo as capacidades digitais"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&name=API Design First: definindo as capacidades digitais&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/api-design-first-definindo-capacidades-digitais/&t=API Design First: definindo as capacidades digitais"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Danilo Soares Frois Cardoso
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

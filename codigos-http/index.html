@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang=pt>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Nesse texto reúno algumas dicas importantes sobre Códigos de Resposta HTTP, essenciais para o bom funcionamento de uma API e&#x2F;ou produto digital. O que são Códigos de Resposta HTTPNa comunicação H">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API Para Pessoas de Negócio: Códigos HTTP">
+<meta property="og:url" content="https://danilocardoso.dev/codigos-http/index.html">
+<meta property="og:site_name" content="Blog do Frois">
+<meta property="og:description" content="Nesse texto reúno algumas dicas importantes sobre Códigos de Resposta HTTP, essenciais para o bom funcionamento de uma API e&#x2F;ou produto digital. O que são Códigos de Resposta HTTPNa comunicação H">
+<meta property="og:locale" content="pt_BR">
+<meta property="article:published_time" content="2024-10-21T03:04:51.000Z">
+<meta property="article:modified_time" content="2025-01-06T14:11:02.569Z">
+<meta property="article:author" content="Danilo Soares Frois Cardoso">
+<meta property="article:tag" content="apis">
+<meta property="article:tag" content="2024">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>API Para Pessoas de Negócio: Códigos HTTP</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/blog/from-zero-linkin-park/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Seguinte" href="/blog/conhecendo-novas-bandas/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
+      <span id="i-top" class="info" style="display:none;">Acima</span>
+      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/codigos-http/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/codigos-http/&text=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/codigos-http/&title=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/codigos-http/&is_video=false&description=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=API Para Pessoas de Negócio: Códigos HTTP&body=Check out this article: https://danilocardoso.dev/codigos-http/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/codigos-http/&title=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/codigos-http/&title=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/codigos-http/&title=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/codigos-http/&title=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/codigos-http/&name=API Para Pessoas de Negócio: Códigos HTTP&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/codigos-http/&t=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-sao-Codigos-de-Resposta-HTTP"><span class="toc-number">1.</span> <span class="toc-text">O que são Códigos de Resposta HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Familias-de-codigo-HTTP-1XX-2XX-3XX-4XX-e-5XX"><span class="toc-number">2.</span> <span class="toc-text">Famílias de código HTTP (1XX, 2XX, 3XX, 4XX e 5XX)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dicas-importantes"><span class="toc-number">3.</span> <span class="toc-text">Dicas importantes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nao-precisamos-usar-todos-os-codigos-HTTP"><span class="toc-number">3.1.</span> <span class="toc-text">Não precisamos usar todos os códigos HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Faca-benchmarks"><span class="toc-number">3.2.</span> <span class="toc-text">Faça benchmarks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Codigos-HTTP-Mais-Usados-em-APIs-com-Casos-de-Uso"><span class="toc-number">3.3.</span> <span class="toc-text">Códigos HTTP Mais Usados em APIs com Casos de Uso</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2XX-sucesso"><span class="toc-number">3.3.0.1.</span> <span class="toc-text">2XX (sucesso)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3XX-redirecionamento"><span class="toc-number">3.3.0.2.</span> <span class="toc-text">3XX (redirecionamento)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4XX-erros-do-cliente"><span class="toc-number">3.3.0.3.</span> <span class="toc-text">4XX (erros do cliente)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5XX-erros-do-servidor"><span class="toc-number">3.3.0.4.</span> <span class="toc-text">5XX (erros do servidor)</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        API Para Pessoas de Negócio: Códigos HTTP
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-10-21T03:04:51.000Z" class="dt-published" itemprop="datePublished">2024-10-21</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/2024/" rel="tag">2024</a>, <a class="p-category" href="/blog/tags/apis/" rel="tag">apis</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Nesse texto reúno algumas dicas importantes sobre Códigos de Resposta HTTP, essenciais para o bom funcionamento de uma API e&#x2F;ou produto digital.</p>
+<h2 id="O-que-sao-Codigos-de-Resposta-HTTP"><a href="#O-que-sao-Codigos-de-Resposta-HTTP" class="headerlink" title="O que são Códigos de Resposta HTTP"></a>O que são Códigos de Resposta HTTP</h2><p>Na comunicação HTTP, temos sempre dois atores: um <strong>cliente</strong> e um <strong>servidor</strong>. O cliente pede informações ou ações e o servidor interpreta e envia respostas, sempre de forma síncrona. Para que o cliente saiba o que aconteceu durante a solicitação feita ao servidor, as respostas do servidor possuem um código de resposta, para auxiliar no entendimento.</p>
+<p>Dados podem ser enviados quando necessário pelo servidor, mas os códigos de resposta garantem que o cliente possa entender qual comportamento ocorreu..</p>
+<h2 id="Familias-de-codigo-HTTP-1XX-2XX-3XX-4XX-e-5XX"><a href="#Familias-de-codigo-HTTP-1XX-2XX-3XX-4XX-e-5XX" class="headerlink" title="Famílias de código HTTP (1XX, 2XX, 3XX, 4XX e 5XX)"></a>Famílias de código HTTP (1XX, 2XX, 3XX, 4XX e 5XX)</h2><p>Para facilitar a interpretação pelo cliente, os códigos de resposta HTTP são classificados em diferentes “famílias”, com base no primeiro dígito, e cada uma delas indica um tipo de situação ou resposta que o servidor está fornecendo ao cliente.</p>
+<p><strong>1XX (Informacional</strong>): Essas respostas são raramente vistas pelo usuário, pois indicam que o servidor recebeu a solicitação e que o cliente pode continuar o processo.<br><strong>Exemplo: 100 Continue</strong> significa que o cliente pode continuar enviando o corpo da solicitação, já que os cabeçalhos foram aceitos.</p>
+<p><strong>2XX (Sucesso)</strong>: Essa família indica que a solicitação foi recebida, compreendida e processada corretamente. O código mais comum é o <strong>200 OK</strong>, que informa que a operação foi concluída com sucesso. Outros exemplos incluem o <strong>201 Created</strong>, utilizado quando um novo recurso é criado, como ao cadastrar um novo usuário.</p>
+<p><strong>3XX (Redirecionamento)</strong>: Esses códigos informam que o cliente precisa tomar outra ação para completar a solicitação. O <strong>301 Moved Permanently</strong> indica que o recurso foi movido permanentemente para uma nova URL, enquanto o <strong>302 Found</strong> indica um redirecionamento temporário.</p>
+<p><strong>4XX (Erros do Cliente)</strong>: Esta categoria cobre situações em que houve um problema com a solicitação feita pelo cliente. O <strong>404 Not Found</strong> é um dos mais conhecidos e indica que o recurso solicitado não foi encontrado. Outro exemplo é o <strong>400 Bad Request</strong>, que indica que a solicitação não pôde ser processada devido a uma sintaxe incorreta.</p>
+<p><strong>5XX (Erros do Servidor)</strong>: Esses códigos indicam que o servidor encontrou um erro ao tentar processar a solicitação. O <strong>500 Internal Server Error</strong> é o mais comum e indica uma falha genérica no servidor. Outro exemplo é o <strong>503 Service Unavailable</strong>, que indica que o servidor está temporariamente incapaz de atender a solicitação, geralmente devido a manutenção ou sobrecarga.</p>
+<h2 id="Dicas-importantes"><a href="#Dicas-importantes" class="headerlink" title="Dicas importantes"></a>Dicas importantes</h2><h3 id="Nao-precisamos-usar-todos-os-codigos-HTTP"><a href="#Nao-precisamos-usar-todos-os-codigos-HTTP" class="headerlink" title="Não precisamos usar todos os códigos HTTP"></a>Não precisamos usar todos os códigos HTTP</h3><p>Os códigos de status HTTP são padronizados para facilitar a comunicação entre servidores e clientes (navegadores ou outras aplicações), mas não é obrigatório que todos eles sejam utilizados em uma aplicação. Na prática, muitas APIs e sistemas utilizam apenas um subconjunto desses códigos, especialmente os mais comuns, como o <strong>200 OK</strong>, <strong>404 Not Found</strong>, e <strong>500 Internal Server Error</strong>. O uso de muitos códigos pode complicar a manutenção ou a consistência das respostas em alguns sistemas, e é comum simplificar utilizando apenas os mais relevantes para o contexto da aplicação.</p>
+<p>Isso não compromete o funcionamento da comunicação, desde que os códigos escolhidos sejam usados corretamente e correspondam ao comportamento esperado pelo cliente. O importante é <strong>garantir que o cliente saiba</strong> se a solicitação foi bem-sucedida ou se ocorreu um erro, e como lidar com as situações apresentadas. O uso consciente e simplificado dos códigos mais comuns garante clareza e eficiência nas respostas.</p>
+<h3 id="Faca-benchmarks"><a href="#Faca-benchmarks" class="headerlink" title="Faça benchmarks"></a>Faça benchmarks</h3><p>Empresas líderes em suas áreas, como Stripe e GitHub, são exemplos de excelência no uso de códigos HTTP, oferecendo APIs robustas, com respostas claras e padronizadas. Fazer bench dessas empresas permite adotar boas práticas já validadas por elas além de evitar cenários já passados pelas mesmas. Temos dois exemplos muito bons que são:</p>
+<p><strong>Exemplo no Mercado Financeiro: Stripe</strong><br>A Stripe, uma das principais plataformas de pagamento online, é referência no uso de APIs bem documentadas e na aplicação criteriosa de códigos HTTP. No contexto de serviços financeiros, onde precisão e confiança são fundamentais, a Stripe define claramente o comportamento de sua API usando os códigos HTTP de forma consistente e previsível. Por exemplo:</p>
+<p><strong>200 OK</strong>: Usado para confirmações de sucesso em transações e operações com dados sensíveis.</p>
+<p><strong>201 Created:</strong> Utilizado quando um novo recurso é criado, como uma nova cobrança ou cliente, com a URL do novo recurso sendo retornada.</p>
+<p><strong>400 Bad Request</strong>: Quando uma solicitação falha devido a um erro do cliente, como falta de parâmetros obrigatórios ao criar uma cobrança.</p>
+<p><strong>402 Payment Required</strong>: Um código relativamente raro, mas usado pela Stripe para indicar que há um problema com o pagamento, como um cartão de crédito recusado.</p>
+<p>A Stripe também oferece um excelente exemplo de como usar detalhadamente os códigos 4XX e 5XX para comunicar erros relacionados ao processamento de pagamentos, fornecendo mensagens detalhadas de erro e orientações claras de correção.</p>
+<p><strong>Exemplo em Outras Áreas: GitHub (Tecnologia)</strong><br>No setor de tecnologia, o GitHub é uma referência para APIs usadas por desenvolvedores de software. Ele oferece uma API pública que permite interagir com repositórios, issues, pull requests, entre outras funcionalidades. O GitHub também adota um uso eficiente dos códigos HTTP:</p>
+<p><strong>202 Accepted:</strong> Usado quando uma ação foi aceita, mas ainda está em processamento, como a criação de uma build ou uma operação de merge.</p>
+<p><strong>403 Forbidden:</strong> Comumente retornado quando um usuário tenta acessar um repositório privado ou fazer ações para as quais não tem permissões.</p>
+<p><strong>409 Conflict:</strong> Utilizado para indicar conflitos, como quando um merge não pode ser concluído devido a alterações conflitantes.</p>
+<p>Além disso, o GitHub faz um excelente uso do rate limiting (limitação de taxa) e retorna 429 Too Many Requests quando o cliente ultrapassa o limite de solicitações permitidas, incentivando o uso responsável da API.</p>
+<h3 id="Codigos-HTTP-Mais-Usados-em-APIs-com-Casos-de-Uso"><a href="#Codigos-HTTP-Mais-Usados-em-APIs-com-Casos-de-Uso" class="headerlink" title="Códigos HTTP Mais Usados em APIs com Casos de Uso"></a>Códigos HTTP Mais Usados em APIs com Casos de Uso</h3><p>Quando desenvolvemos APIs REST, o uso correto dos códigos de status HTTP é essencial para fornecer respostas claras e padronizadas aos clientes. Cada código transmite informações importantes sobre o sucesso ou falha de uma operação e ajuda os consumidores da API a entenderem como lidar com as respostas.</p>
+<p>Abaixo estão os códigos HTTP mais comuns em APIs REST, junto com exemplos de casos de uso específicos:</p>
+<h5 id="2XX-sucesso"><a href="#2XX-sucesso" class="headerlink" title="2XX (sucesso)"></a>2XX (sucesso)</h5><p><strong>200 OK</strong><br>  <strong>Uso:</strong> A solicitação foi processada com sucesso e a resposta contém os dados solicitados ou a confirmação da operação.<br>  <strong>Caso:</strong> Retornar uma lista de recursos ou os detalhes de um recurso específico após um <code>GET</code>. Também usado para confirmar sucesso em atualizações via <code>PUT</code> ou <code>PATCH</code>.</p>
+<p><strong>201 Created</strong><br>  <strong>Uso:</strong> Indica que um novo recurso foi criado com sucesso.<br>  <strong>Caso:</strong> Após uma requisição <code>POST</code>, como ao registrar um novo usuário ou criar um item. A resposta deve incluir o cabeçalho <code>Location</code> com a URL do novo recurso criado.</p>
+<p><strong>204 No Content</strong><br>  <strong>Uso:</strong> A solicitação foi bem-sucedida, mas não há conteúdo para retornar.<br>  <strong>Caso:</strong> Usado para operações como <code>DELETE</code>, quando o recurso foi removido com sucesso, ou para <code>PUT</code>&#x2F;<code>PATCH</code>, quando uma atualização é realizada sem a necessidade de retornar dados.</p>
+<h5 id="3XX-redirecionamento"><a href="#3XX-redirecionamento" class="headerlink" title="3XX (redirecionamento)"></a>3XX (redirecionamento)</h5><p><strong>301 Moved Permanently</strong><br>  <strong>Uso:</strong> Indica que o recurso foi movido permanentemente para uma nova URL.<br>  <strong>Caso:</strong> Ao mudar a estrutura da API e redirecionar clientes de uma rota antiga para uma nova, garantindo compatibilidade com versões anteriores.</p>
+<p><strong>304 Not Modified</strong><br>  <strong>Uso:</strong> Informa que o recurso não foi modificado desde a última solicitação, permitindo que o cliente use a versão em cache.<br>  <strong>Caso:</strong> Em endpoints de <code>GET</code>, quando o cliente já possui uma cópia do recurso (com base no <code>ETag</code> ou <code>Last-Modified</code>), evitando o tráfego desnecessário de dados.</p>
+<h5 id="4XX-erros-do-cliente"><a href="#4XX-erros-do-cliente" class="headerlink" title="4XX (erros do cliente)"></a>4XX (erros do cliente)</h5><p><strong>400 Bad Request</strong><br>  <strong>Uso:</strong> A solicitação é inválida ou malformada, como erros de sintaxe ou parâmetros incorretos.<br>  <strong>Caso:</strong> O cliente envia um corpo JSON malformado ou parâmetros de consulta inválidos, como ao tentar criar um recurso com dados faltantes ou incorretos.</p>
+<p><strong>401 Unauthorized</strong><br>  <strong>Uso:</strong> O cliente não forneceu credenciais de autenticação ou as credenciais são inválidas.<br>  <strong>Caso:</strong> Tentativa de acessar um endpoint protegido sem token de autenticação ou com um token expirado.</p>
+<p><strong>403 Forbidden</strong><br>  <strong>Uso:</strong> O cliente está autenticado, mas não tem permissão para acessar o recurso.<br>  <strong>Caso:</strong> Um usuário autenticado tenta acessar um recurso ou realizar uma ação para a qual não possui as permissões adequadas, como tentar deletar um recurso de outro usuário.</p>
+<p><strong>404 Not Found</strong><br>  <strong>Uso:</strong> O recurso solicitado não foi encontrado.<br>  <strong>Caso:</strong> Tentativa de acessar um recurso que não existe ou que foi removido, como buscar por um ID inexistente em uma coleção de usuários.</p>
+<p><strong>405 Method Not Allowed</strong><br>  <strong>Uso:</strong> O método HTTP utilizado não é suportado para o recurso solicitado.<br>  <strong>Caso:</strong> Tentar usar <code>POST</code> em um endpoint que só aceita <code>GET</code>, ou <code>DELETE</code> em um recurso que não permite exclusão.</p>
+<p><strong>422 Unprocessable Entity</strong><br>  <strong>Uso:</strong> A solicitação é bem formada, mas não pode ser processada devido a erros de validação nos dados.<br>  <strong>Caso:</strong> Ao enviar um <code>POST</code> ou <code>PUT</code> com dados que falham em passar regras de validação, como um campo de e-mail ausente ou formato incorreto.</p>
+<h5 id="5XX-erros-do-servidor"><a href="#5XX-erros-do-servidor" class="headerlink" title="5XX (erros do servidor)"></a>5XX (erros do servidor)</h5><p><strong>500 Internal Server Error</strong><br>  <strong>Uso:</strong> Ocorreu um erro inesperado no servidor ao processar a solicitação.<br>  <strong>Caso:</strong> Erros genéricos que não foram tratados adequadamente pelo servidor, como exceções não capturadas ou falhas no código.</p>
+<p><strong>502 Bad Gateway</strong><br>  <strong>Uso:</strong> O servidor, atuando como gateway ou proxy, recebeu uma resposta inválida de outro servidor upstream.<br>  <strong>Caso:</strong> Em arquiteturas de microserviços, quando um serviço não consegue se comunicar corretamente com outro serviço de backend.</p>
+<p><strong>503 Service Unavailable</strong><br>  <strong>Uso:</strong> O servidor está temporariamente indisponível, geralmente por causa de manutenção ou sobrecarga.<br>  <strong>Caso:</strong> Quando o serviço está em manutenção ou o servidor está com excesso de carga e não consegue processar novas solicitações.</p>
+<p><strong>504 Gateway Timeout</strong><br>  <strong>Uso:</strong> Um servidor, atuando como gateway ou proxy, não recebeu uma resposta a tempo de outro servidor upstream.<br>  <strong>Caso:</strong> Quando um microserviço demora mais do que o esperado para responder, resultando em um timeout na comunicação entre serviços.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">Início</a></li>
+        
+          <li><a href="/blog/about/">Sobre</a></li>
+        
+          <li><a href="/blog/archives/">Artigos</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-sao-Codigos-de-Resposta-HTTP"><span class="toc-number">1.</span> <span class="toc-text">O que são Códigos de Resposta HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Familias-de-codigo-HTTP-1XX-2XX-3XX-4XX-e-5XX"><span class="toc-number">2.</span> <span class="toc-text">Famílias de código HTTP (1XX, 2XX, 3XX, 4XX e 5XX)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dicas-importantes"><span class="toc-number">3.</span> <span class="toc-text">Dicas importantes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nao-precisamos-usar-todos-os-codigos-HTTP"><span class="toc-number">3.1.</span> <span class="toc-text">Não precisamos usar todos os códigos HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Faca-benchmarks"><span class="toc-number">3.2.</span> <span class="toc-text">Faça benchmarks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Codigos-HTTP-Mais-Usados-em-APIs-com-Casos-de-Uso"><span class="toc-number">3.3.</span> <span class="toc-text">Códigos HTTP Mais Usados em APIs com Casos de Uso</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2XX-sucesso"><span class="toc-number">3.3.0.1.</span> <span class="toc-text">2XX (sucesso)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3XX-redirecionamento"><span class="toc-number">3.3.0.2.</span> <span class="toc-text">3XX (redirecionamento)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4XX-erros-do-cliente"><span class="toc-number">3.3.0.3.</span> <span class="toc-text">4XX (erros do cliente)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5XX-erros-do-servidor"><span class="toc-number">3.3.0.4.</span> <span class="toc-text">5XX (erros do servidor)</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/codigos-http/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/codigos-http/&text=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/codigos-http/&title=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/codigos-http/&is_video=false&description=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=API Para Pessoas de Negócio: Códigos HTTP&body=Check out this article: https://danilocardoso.dev/codigos-http/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/codigos-http/&title=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/codigos-http/&title=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/codigos-http/&title=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/codigos-http/&title=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/codigos-http/&name=API Para Pessoas de Negócio: Códigos HTTP&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/codigos-http/&t=API Para Pessoas de Negócio: Códigos HTTP"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Danilo Soares Frois Cardoso
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

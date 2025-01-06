@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang=pt>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="De forma simplificada, cache é um recurso que diminui a necessidade de processamento computacional ao deixar informações estáticas mais perto dos consumidores. Imagine, por exemplo, que você tem uma l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quando usar cache em suas APIs">
+<meta property="og:url" content="https://danilocardoso.dev/quando-usar-cache-apis/index.html">
+<meta property="og:site_name" content="Blog do Frois">
+<meta property="og:description" content="De forma simplificada, cache é um recurso que diminui a necessidade de processamento computacional ao deixar informações estáticas mais perto dos consumidores. Imagine, por exemplo, que você tem uma l">
+<meta property="og:locale" content="pt_BR">
+<meta property="article:published_time" content="2023-04-13T14:49:29.000Z">
+<meta property="article:modified_time" content="2025-01-06T14:11:02.578Z">
+<meta property="article:author" content="Danilo Soares Frois Cardoso">
+<meta property="article:tag" content="apis">
+<meta property="article:tag" content="2023">
+<meta property="article:tag" content="arquitetura">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Quando usar cache em suas APIs</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/blog/quando-nao-usar-cache-apis/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Seguinte" href="/blog/contratos-api-chatgpt/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
+      <span id="i-top" class="info" style="display:none;">Acima</span>
+      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/quando-usar-cache-apis/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/quando-usar-cache-apis/&text=Quando usar cache em suas APIs"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/quando-usar-cache-apis/&title=Quando usar cache em suas APIs"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/quando-usar-cache-apis/&is_video=false&description=Quando usar cache em suas APIs"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Quando usar cache em suas APIs&body=Check out this article: https://danilocardoso.dev/quando-usar-cache-apis/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/quando-usar-cache-apis/&title=Quando usar cache em suas APIs"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/quando-usar-cache-apis/&title=Quando usar cache em suas APIs"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/quando-usar-cache-apis/&title=Quando usar cache em suas APIs"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/quando-usar-cache-apis/&title=Quando usar cache em suas APIs"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/quando-usar-cache-apis/&name=Quando usar cache em suas APIs&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/quando-usar-cache-apis/&t=Quando usar cache em suas APIs"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Beneficios-de-cache-em-APIs"><span class="toc-number">1.</span> <span class="toc-text">Benefícios de cache em APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cenarios-para-uso-de-cache"><span class="toc-number">2.</span> <span class="toc-text">Cenários para uso de cache</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Quando usar cache em suas APIs
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-04-13T14:49:29.000Z" class="dt-published" itemprop="datePublished">2023-04-13</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/2023/" rel="tag">2023</a>, <a class="p-category" href="/blog/tags/apis/" rel="tag">apis</a>, <a class="p-category" href="/blog/tags/arquitetura/" rel="tag">arquitetura</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>De forma simplificada, <strong>cache</strong> é um recurso que diminui a necessidade de processamento computacional ao deixar informações estáticas <strong>mais perto</strong> dos consumidores. Imagine, por exemplo, que você tem uma loja online. Seu site utiliza API de terceiros para obter informações sobre os produtos, como descrições, preços e avaliações. Os clientes que visitam o seu site precisam ter acesso rápido e preciso a essas informações para tomar decisões de compra.</p>
+<p>Neste cenário, o uso de cache pode ser extremamente útil para melhorar a experiência do usuário e reduzir a carga no servidor da API de terceiros. Com uma carga reduzida, os custos de consumo de uma API de terceiros também será menor.</p>
+<h2 id="Beneficios-de-cache-em-APIs"><a href="#Beneficios-de-cache-em-APIs" class="headerlink" title="Benefícios de cache em APIs"></a>Benefícios de cache em APIs</h2><p>Usando cache você tem alguns benefícios, como:</p>
+<ul>
+<li><p><strong>Tempo de carregamento da página mais rápido</strong>: Armazenar em cache as informações do produto frequentemente acessadas pode acelerar o tempo de carregamento das páginas do seu site. Isso significa que os clientes podem navegar pelos produtos mais rapidamente e ter uma experiência de usuário mais satisfatória.</p>
+</li>
+<li><p><strong>Menor latência</strong>: Se a API de terceiros estiver localizada geograficamente longe do seu servidor ou dos usuários finais, a latência pode ser um problema. Ao utilizar cache, as informações do produto podem ser armazenadas mais próximas aos usuários finais, reduzindo a latência e melhorando a velocidade de acesso às informações.</p>
+</li>
+<li><p><strong>Tolerância a falhas</strong>: Se a API de terceiros enfrentar problemas temporários ou ficar indisponível, o cache pode servir como uma camada adicional de resiliência. Os dados armazenados em cache ainda estarão disponíveis para os clientes, permitindo que seu site continue funcionando até que a API retorne à normalidade.</p>
+</li>
+<li><p><strong>Escalabilidade</strong>: À medida que seu negócio cresce e atrai mais visitantes, a demanda por informações do produto aumenta. O uso de cache permite que seu site escale de maneira eficiente, pois reduz a carga nos servidores da API e no seu próprio sistema.</p>
+</li>
+</ul>
+<h2 id="Cenarios-para-uso-de-cache"><a href="#Cenarios-para-uso-de-cache" class="headerlink" title="Cenários para uso de cache"></a>Cenários para uso de cache</h2><p>Existem alguns cenários onde utilizar cache em APIs é indicado, como por exemplo:</p>
+<ul>
+<li><p><strong>Consultas frequentes e repetitivas</strong>: Se a API é consultada frequentemente com os mesmos parâmetros, o cache pode armazenar temporariamente os resultados, economizando recursos de processamento e tempo de resposta.</p>
+</li>
+<li><p><strong>Dados estáticos ou pouco voláteis</strong>: Se os dados retornados pela API não mudam com frequência ou são estáticos, o cache é uma boa opção para armazenar essas informações e reduzir a quantidade de requisições ao servidor.</p>
+</li>
+<li><p><strong>Limitação de taxa (rate limiting)</strong>: Se a API possui limitações de taxa de requisições, o uso de cache pode ajudar a evitar exceder esses limites, armazenando os resultados das requisições anteriores e reduzindo o número de chamadas à API.</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">Início</a></li>
+        
+          <li><a href="/blog/about/">Sobre</a></li>
+        
+          <li><a href="/blog/archives/">Artigos</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Beneficios-de-cache-em-APIs"><span class="toc-number">1.</span> <span class="toc-text">Benefícios de cache em APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cenarios-para-uso-de-cache"><span class="toc-number">2.</span> <span class="toc-text">Cenários para uso de cache</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/quando-usar-cache-apis/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/quando-usar-cache-apis/&text=Quando usar cache em suas APIs"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/quando-usar-cache-apis/&title=Quando usar cache em suas APIs"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/quando-usar-cache-apis/&is_video=false&description=Quando usar cache em suas APIs"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Quando usar cache em suas APIs&body=Check out this article: https://danilocardoso.dev/quando-usar-cache-apis/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/quando-usar-cache-apis/&title=Quando usar cache em suas APIs"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/quando-usar-cache-apis/&title=Quando usar cache em suas APIs"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/quando-usar-cache-apis/&title=Quando usar cache em suas APIs"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/quando-usar-cache-apis/&title=Quando usar cache em suas APIs"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/quando-usar-cache-apis/&name=Quando usar cache em suas APIs&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/quando-usar-cache-apis/&t=Quando usar cache em suas APIs"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Danilo Soares Frois Cardoso
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

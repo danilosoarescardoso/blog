@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang=pt>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="“API Design First“ é uma abordagem de desenvolvimento de software onde o design da API (Interface de Programação de Aplicativos) é feito antes da implementação do código. Em outras palavras, a primeir">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API Design First: passo-a-passo">
+<meta property="og:url" content="https://danilocardoso.dev/api-design-first-passo-a-passo/index.html">
+<meta property="og:site_name" content="Blog do Frois">
+<meta property="og:description" content="“API Design First“ é uma abordagem de desenvolvimento de software onde o design da API (Interface de Programação de Aplicativos) é feito antes da implementação do código. Em outras palavras, a primeir">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://danilocardoso.dev/blog/api-design-first-passo-a-passo/addr.png">
+<meta property="article:published_time" content="2023-05-17T20:41:45.000Z">
+<meta property="article:modified_time" content="2025-01-06T14:11:02.555Z">
+<meta property="article:author" content="Danilo Soares Frois Cardoso">
+<meta property="article:tag" content="apis">
+<meta property="article:tag" content="2023">
+<meta property="article:tag" content="tecnologia">
+<meta property="article:tag" content="desenvolvimento">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://danilocardoso.dev/blog/api-design-first-passo-a-passo/addr.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>API Design First: passo-a-passo</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/blog/api-design-first-definindo-capacidades-digitais/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Seguinte" href="/blog/exemplo-cache-apis/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
+      <span id="i-top" class="info" style="display:none;">Acima</span>
+      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/api-design-first-passo-a-passo/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&text=API Design First: passo-a-passo"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&title=API Design First: passo-a-passo"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&is_video=false&description=API Design First: passo-a-passo"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=API Design First: passo-a-passo&body=Check out this article: https://danilocardoso.dev/api-design-first-passo-a-passo/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&title=API Design First: passo-a-passo"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&title=API Design First: passo-a-passo"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&title=API Design First: passo-a-passo"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&title=API Design First: passo-a-passo"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&name=API Design First: passo-a-passo&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/api-design-first-passo-a-passo/&t=API Design First: passo-a-passo"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Processo-ADDR"><span class="toc-number">1.</span> <span class="toc-text">Processo ADDR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fases-para-escrever-um-contrato-de-API"><span class="toc-number">2.</span> <span class="toc-text">Fases para escrever um contrato de API</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        API Design First: passo-a-passo
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-05-17T20:41:45.000Z" class="dt-published" itemprop="datePublished">2023-05-17</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/2023/" rel="tag">2023</a>, <a class="p-category" href="/blog/tags/apis/" rel="tag">apis</a>, <a class="p-category" href="/blog/tags/desenvolvimento/" rel="tag">desenvolvimento</a>, <a class="p-category" href="/blog/tags/tecnologia/" rel="tag">tecnologia</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>“<strong>API Design First</strong>“ é uma abordagem de desenvolvimento de software onde o design da API (Interface de Programação de Aplicativos) é feito antes da implementação do código.</p>
+<p>Em outras palavras, a primeira etapa é <strong>definir e projetar</strong> a interface da API - como as diferentes partes do software se comunicarão entre si - usando uma linguagem de descrição de API como OpenAPI ou RAML. Somente após a API ser projetada e aprovada, a equipe começa a escrever o código que implementa essa interface.</p>
+<p>A vantagem dessa abordagem é que ela incentiva a pensar cuidadosamente sobre como a API será usada e como ela deve ser estruturada antes de começar a codificar. Isso pode levar a APIs mais bem projetadas, com melhor usabilidade e menos necessidade de refatoração posterior. Além disso, permite que as equipes de front-end e back-end trabalhem em paralelo, uma vez que o contrato da API já foi acordado.</p>
+<p>Para conseguirmos chegar a um contrato que atenda todas as partes, podemos seguir esse passo-a-passo:</p>
+<h2 id="Processo-ADDR"><a href="#Processo-ADDR" class="headerlink" title="Processo ADDR"></a>Processo ADDR</h2><img src="/blog/api-design-first-passo-a-passo/addr.png" class="" title="ADDR">
+
+<p>ADDR é um acrônimo que se refere a um processo comum na escrita e design de APIs. Ele é composto pelas seguintes etapas:</p>
+<ul>
+<li><p><strong>Alinhar</strong>: Garante o alinhamento entre os diferentes escopos envolvidos, como negócio, produto e tecnologia, fechando um entendimento de quais são os resultados esperados para o projeto.</p>
+</li>
+<li><p><strong>Definir</strong>: Fase onde são mapeados os requisitos do cliente em capacidades digitais que definirão a necessidade de uma ou mais APIs para entregar os resultados esperados.</p>
+</li>
+<li><p><strong>Desenhar</strong>:  Aqui o design da API é feito, procurando o melhor API Style para os resultados esperados pelas partes envolvidas</p>
+</li>
+<li><p><strong>Refinar</strong>: Nessa fase é coletado o feedback dos desenvolvedores através de testes, prototipações e escrita de documentação</p>
+</li>
+</ul>
+<h2 id="Fases-para-escrever-um-contrato-de-API"><a href="#Fases-para-escrever-um-contrato-de-API" class="headerlink" title="Fases para escrever um contrato de API"></a>Fases para escrever um contrato de API</h2><p>Existem 7 fases, segundo James Higginbotham, para que o contrato de uma API seja feito:</p>
+<ol>
+<li><a href="https://danilocardoso.dev/blog/api-design-first-definindo-capacidades-digitais/"><strong>Identificar capacidades digitais.</strong></a> identificar as necessidades do cliente e resultados esperados, incluindo as respectivas capacidades digitais. </li>
+<li><strong>Definir atividades.</strong> expandir capacidades digitais para incluir um entendimento único e claro das atividades necessárias para atingir os resultados esperados usando sessões colaborativas de design. </li>
+<li><strong>Identificar fronteiras da API.</strong> validar se já não existe alguma API que pode ser reutilizada e, no caso de necessidade de novas APIs, quais deverão ser criadas.</li>
+<li><strong>Modelar Perfis de API.</strong> definir através de sessões colaborativas de design qual o melhor perfil de API a ser utilizado, incluindo recursos e operações.</li>
+<li><strong>Design de Alto nível da API.</strong> Escolher um ou mais Perfis de API que serão usados e documentar os elementos de design de alto nível envolvidos.</li>
+<li><strong>Refino do Design.</strong> Incluir feedback dos consumidores da API usando técnicas que busquem a melhor experiência para o desenvolvedor.</li>
+<li><strong>Documentar a API.</strong> finalizar a documentação da API, incluindo materiais para onboarding, testes e formas de acelerar a integração.</li>
+</ol>
+<p>Nos próximos textos aprofundarei em cada uma das etapas listadas acima.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">Início</a></li>
+        
+          <li><a href="/blog/about/">Sobre</a></li>
+        
+          <li><a href="/blog/archives/">Artigos</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Processo-ADDR"><span class="toc-number">1.</span> <span class="toc-text">Processo ADDR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fases-para-escrever-um-contrato-de-API"><span class="toc-number">2.</span> <span class="toc-text">Fases para escrever um contrato de API</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/api-design-first-passo-a-passo/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&text=API Design First: passo-a-passo"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&title=API Design First: passo-a-passo"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&is_video=false&description=API Design First: passo-a-passo"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=API Design First: passo-a-passo&body=Check out this article: https://danilocardoso.dev/api-design-first-passo-a-passo/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&title=API Design First: passo-a-passo"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&title=API Design First: passo-a-passo"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&title=API Design First: passo-a-passo"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&title=API Design First: passo-a-passo"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/api-design-first-passo-a-passo/&name=API Design First: passo-a-passo&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/api-design-first-passo-a-passo/&t=API Design First: passo-a-passo"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Danilo Soares Frois Cardoso
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang=pt>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Quando trabalhamos com Kafka, existem alguns conceitos e palavras-chave que acabam aparecendo com bastante frequência. Antes de falar sobre cada um deles, vale a pena visualizar como a arquitetura do">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Integrando sistemas com Kafka: principais conceitos">
+<meta property="og:url" content="https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/index.html">
+<meta property="og:site_name" content="Blog do Frois">
+<meta property="og:description" content="Quando trabalhamos com Kafka, existem alguns conceitos e palavras-chave que acabam aparecendo com bastante frequência. Antes de falar sobre cada um deles, vale a pena visualizar como a arquitetura do">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://sgitario.github.io/images/kafka_concepts_1.png">
+<meta property="og:image" content="https://www.freecodecamp.org/news/content/images/2023/01/topic.PNG">
+<meta property="og:image" content="https://static.imasters.com.br/wp-content/uploads/2016/08/uber-1.png">
+<meta property="og:image" content="https://www.cloudkarafka.com/img/blog/kafka-broker-beginner.png">
+<meta property="og:image" content="https://www.cloudkarafka.com/img/blog/apache-kafka-partitions-topics.png">
+<meta property="article:published_time" content="2023-12-07T20:58:56.000Z">
+<meta property="article:modified_time" content="2025-01-06T14:11:02.574Z">
+<meta property="article:author" content="Danilo Soares Frois Cardoso">
+<meta property="article:tag" content="2023">
+<meta property="article:tag" content="arquitetura">
+<meta property="article:tag" content="kafka">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sgitario.github.io/images/kafka_concepts_1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Integrando sistemas com Kafka: principais conceitos</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/blog/morando-fora-de-sp-em-2024/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Seguinte" href="/blog/integrando-sistemas-com-kafka-introducao/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
+      <span id="i-top" class="info" style="display:none;">Acima</span>
+      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&text=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&title=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&is_video=false&description=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Integrando sistemas com Kafka: principais conceitos&body=Check out this article: https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&title=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&title=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&title=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&title=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&name=Integrando sistemas com Kafka: principais conceitos&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&t=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Eventos"><span class="toc-number">1.</span> <span class="toc-text">Eventos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Topico"><span class="toc-number">2.</span> <span class="toc-text">Tópico</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Produtor"><span class="toc-number">3.</span> <span class="toc-text">Produtor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consumidor"><span class="toc-number">4.</span> <span class="toc-text">Consumidor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Broker"><span class="toc-number">5.</span> <span class="toc-text">Broker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Particao"><span class="toc-number">6.</span> <span class="toc-text">Partição</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Offset"><span class="toc-number">7.</span> <span class="toc-text">Offset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Acknowledge"><span class="toc-number">8.</span> <span class="toc-text">Acknowledge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consumer-Groups"><span class="toc-number">9.</span> <span class="toc-text">Consumer Groups</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Integrando sistemas com Kafka: principais conceitos
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-07T20:58:56.000Z" class="dt-published" itemprop="datePublished">2023-12-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/2023/" rel="tag">2023</a>, <a class="p-category" href="/blog/tags/arquitetura/" rel="tag">arquitetura</a>, <a class="p-category" href="/blog/tags/kafka/" rel="tag">kafka</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Quando trabalhamos com Kafka, existem alguns conceitos e palavras-chave que acabam aparecendo com bastante frequência. Antes de falar sobre cada um deles, vale a pena visualizar como a arquitetura do Kafka costuma funcionar:</p>
+<p><img src="https://sgitario.github.io/images/kafka_concepts_1.png"></p>
+<p><strong>Figura 1</strong> - Arquitetura Kafka. <strong>Fonte</strong>: <a target="_blank" rel="noopener" href="https://sgitario.github.io/rabbitmq_vs_kafka/">RabbitMQ vs Apache Kafka</a></p>
+<h2 id="Eventos"><a href="#Eventos" class="headerlink" title="Eventos"></a>Eventos</h2><p>Um evento nada mais é do que uma <strong>ação que ocorreu</strong> e foi processada pelo Kafka. Quando queremos informar um sistema sobre algo que aconteceu em outro sistema usando Kafka, estamos utilizando eventos para isso. Cada evento possui a seguinte estrutura:</p>
+<ul>
+<li><strong>Chave</strong>: Campo obrigatório. É um <strong>identificador exclusivo</strong> para a mensagem, a chave é usada para distribuir as mensagens entre as partições do tópico, conceitos que veremos mais à frente. Se esse campo não for criado anteriormente, o próprio Kafka irá preenchê-lo.</li>
+<li><strong>Value</strong>: Campo obrigatório. É o valor que aquele evento possui. Pode ser qualquer tipo de dados, como texto, binário ou JSON;</li>
+<li><strong>Campos opcionais</strong>:<ul>
+<li><strong>Timestamp</strong>: marcação de <strong>data&#x2F;hora</strong> em que a mensagem foi criada. Por <em>default</em> esse campo representa o momento em que a mensasgem foi criada, mas ele pode ser atualizado para quando um momento anterior, caso seja sua necessidade. </li>
+<li><strong>Headers</strong>: Pares de chave-valor que podem ser usados para armazenar <strong>informações adicionais</strong> sobre a mensagem.</li>
+</ul>
+</li>
+</ul>
+<p>Abaixo, temos o exemplo de um evento do Kafka:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;key&quot;</span>: <span class="string">&quot;1234567890&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;value&quot;</span>: <span class="string">&quot;Olá, mundo!&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;timestamp&quot;</span>: <span class="number">1696876469</span>,</span><br><span class="line">  <span class="attr">&quot;headers&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;content-type&quot;</span>: <span class="string">&quot;text/plain&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Neste exemplo, o evento processado pelo Kafka tem:</p>
+<ul>
+<li>O ID único do evento sendo <em>1234567890</em></li>
+<li>Mensagem <em>“Olá, mundo!”</em></li>
+<li>O <em>timestamp</em> é 1696876469, o que significa que a mensagem foi <a target="_blank" rel="noopener" href="https://www.unixtimestamp.com/">criada no dia 09 de outubro de 2023, às 15:34:29 no horário de Brasília</a></li>
+<li>O <em>Content-Type</em> está definido como <em>text&#x2F;plain</em>, o que significa que a mensagem está no formato “texto puro”</li>
+</ul>
+<h2 id="Topico"><a href="#Topico" class="headerlink" title="Tópico"></a>Tópico</h2><p>Um tópico no Kafka é a forma como as mensagens são organizadas em caráter cronológico. Um tópico é organizado por dois principais itens: as mensagens e o offset de cada mensagem. O Kafka anexa cada nova mensagem no final de um tópico. Logo isso faz com o que Kafka siga uma arquitetura FIFO (first in, first out), onde os eventos são consumidos na ordem em que foram criados. </p>
+<p>Vale lembrar que como o Kafka salva os eventos em disco no formato de log, cada mensagem é salva no final de um arquivo, igual os sistemas de log que costumamos usar em sistemas feitos em Java, por exemplo. </p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2023/01/topic.PNG"></p>
+<p><strong>Figura 2</strong> - Como tópicos funcionam no Kafka. <strong>Fonte</strong>: <a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/apache-kafka-handbook/#event-messages-in-kafka">The Apache Kafka Handbook – How to Get Started Using Kafka</a></p>
+<h2 id="Produtor"><a href="#Produtor" class="headerlink" title="Produtor"></a>Produtor</h2><p>Um produtor é um software que envia eventos para um tópico. Ele pode ser um microsserviço criado apenas para mandar os eventos ou um software já existente e ajustado para enviar eventos. Adicionando algumas dependências e com poucas alterações de código já é possível começar o envio desses eventos.</p>
+<p>Alguns projetos específicos usam até mesmo hardwares para enviarem eventos. Uma empresa que monitora o clima, por exemplo, pode guardar as diferentes medições em tópicos, permitindo haver análise histórica ou a criação de gatilhos para quando determinados cenários acontecerem. </p>
+<p>Como podemos ver na imagem abaixo, na arquitetura de eventos do Uber o aplicativo do motorista, do cliente, assim como outros serviços são produtores de eventos. Todos gravam eventos em tópicos que são consumidos por dashboards, times de debbuging e sistemas de análise em tempo real.</p>
+<p><img src="https://static.imasters.com.br/wp-content/uploads/2016/08/uber-1.png"></p>
+<p><strong>Figura 3</strong> - Como tópicos funcionam no Kafka. <strong>Fonte</strong>: <a target="_blank" rel="noopener" href="https://imasters.com.br/analytics/umirrormaker-replicator-robusto-kafka-da-engenharia-da-uber">uMirrorMaker: Replicador robusto Kafka da engenharia da Uber</a></p>
+<h2 id="Consumidor"><a href="#Consumidor" class="headerlink" title="Consumidor"></a>Consumidor</h2><p>Usando o mesmo exemplo acima, podemos ver que um consumidor nada mais é do que um software conectado em tópicos, mas que ao invés de produzir acabam consumindo os eventos. Um consumidor é configurado praticamente da mesma forma que um produtor, com a diferença que a sua natureza dentro do ecossistema é diferente. É possível, até mesmo, que um mesmo software seja consumidor e produtor, tudo vai depender da arquitetura que o time de sua empresa adotará. No exemplo da Uber, vemos que existem vários consumidores lendo os eventos que foram criados durante o uso dos aplicativos da empresa pelos motoristas e passageiros.</p>
+<h2 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h2><p>Um broker Kafka é uma estrutura que engloba um ou mais servidores Kafka. É nele que os eventos e tópicos ficam armazenados. Pensando em arquiteturas escaláveis, podemos ter N brokers dentro de um mesmo cluster Kafka. </p>
+<p><img src="https://www.cloudkarafka.com/img/blog/kafka-broker-beginner.png"></p>
+<p><strong>Figura 4</strong> - Broker Kafka. <strong>Fonte:</strong> <a target="_blank" rel="noopener" href="https://www.cloudkarafka.com/img/blog/kafka-broker-beginner.png">Part 1: Apache Kafka for beginners - What is Apache Kafka?</a></p>
+<h2 id="Particao"><a href="#Particao" class="headerlink" title="Partição"></a>Partição</h2><p>No Kafka uma partição é considerado uma cópia de um determinado tópico. Os tópicos são divididos em partições para distribuir as mensagens entre os brokers do Kafka. Cada partição é armazenada em um arquivo de log no sistema de arquivos do broker. Como vantagem, temos uma <strong>melhor distribuição de carga</strong> dentro do próprio Kafka, que armazena as mensagens e cópias de forma equilibrada dentro do broker, <strong>redundância</strong> já que as mensagens são salvas em mais de um lugar e <strong>paralelismo</strong>, permitindo que mais de um consumidor possa ler os eventos ao mesmo tempo.</p>
+<h2 id="Offset"><a href="#Offset" class="headerlink" title="Offset"></a>Offset</h2><p>Para identificar uma mensagem em uma determinada partição, usamos o offset. Um offset é um identificador único que representa a posição de uma mensagem em determinada partição. Quando um consumidor se inscreve em um tópico, ele recebe o offset inicial, que pode ser definido pelo produtor ou pelo consumidor. O consumidor então usa o offset para solicitar as mensagens do Kafka. O consumidor pode commitar o offset após consumir uma mensagem, ou seja, o Kafka saberá que a mensagem foi processada pelo consumidor. Esse processo de “avisar” o Kafka sobre o consumo da mensagem é conhecido como <em>acknowledge</em>. Falaremos mais sobre esse processo abaixo. </p>
+<p><img src="https://www.cloudkarafka.com/img/blog/apache-kafka-partitions-topics.png"></p>
+<p><strong>Figura 5</strong> - Offsets e partições. <strong>Fonte:</strong> <a target="_blank" rel="noopener" href="https://www.cloudkarafka.com/img/blog/apache-kafka-partitions-topics.png">Part 1: Apache Kafka for beginners - What is Apache Kafka?</a></p>
+<h2 id="Acknowledge"><a href="#Acknowledge" class="headerlink" title="Acknowledge"></a>Acknowledge</h2><p>O acknowledge é um processo importante para garantir que as mensagens sejam consumidas apenas uma vez e para evitar a sua perda. Existem dois tipos de acknowledge: automáticos e manuais. No automático o Kafka assume que a mensagem foi consumida com sucesso <strong>quando o consumidor a recebe</strong>. No manual, o consumidor deve enviar um acknowledge explícito ao Kafka para indicar que a mensagem foi consumida com sucesso.</p>
+<p>Vale ressaltar que o acknowledge automático é o modo padrão de operação do Kafka. Apesar de ser simples e eficiente, não fornece garantia de que as mensagens serão consumidas apenas uma vez. No caso do acknowledge manual temos mais controle sobre o processo de consumo dos eventos. O consumidor pode escolher quando e como enviar o acknowledge. Isso pode ser útil em cenários onde é importante garantir que as mensagens sejam consumidas apenas uma vez ou quando o consumidor precisa processar as mensagens antes de enviar o acknowledge.</p>
+<h2 id="Consumer-Groups"><a href="#Consumer-Groups" class="headerlink" title="Consumer Groups"></a>Consumer Groups</h2><p>Os consumer groups são uma forma de organizar o consumo de eventos de um determinado tópico. Os consumidores de um mesmo grupo compartilham as mensagens daquele tópico, de modo que cada consumidor recebe apenas uma parte das mensagens. Isso ajuda na escalabilidade e resiliência do consumo, já que cada consumidor consome um pouco das mensagens, além de permitir que um consumo falho seja feito novamente por outro consumidor daquele grupo.</p>
+<p>Os consumidores de um mesmo grupo começam a consumir as mensagens a partir do mesmo offset inicial. O Kafka garante que cada consumidor receba apenas uma parte das mensagens do tópico. Quando há o consumo de um evento, o consumidor pode commitar o offset da mensagem, processo que falamos mais ali em cima. Com isso o Kafka saberá quais consumos foram realizados por determinado consumer group. </p>
+<hr>
+<p>De modo geral, acredito que esses são os principais componentes e palavras-chave que precisamos conhecer ao trabalhar com Kafka, ou pelo menos no começo das entregas com essa tecnologia. Conforme houver o aprofundamento na tecnologia, é natural que hajam novos conceitos para descobrir e ler sobre. No próximo texto planejo falar sobre os Padrões de Arquitetura que envolvem o uso de eventos, como CQRS e SAGA, por exemplo. </p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">Início</a></li>
+        
+          <li><a href="/blog/about/">Sobre</a></li>
+        
+          <li><a href="/blog/archives/">Artigos</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Eventos"><span class="toc-number">1.</span> <span class="toc-text">Eventos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Topico"><span class="toc-number">2.</span> <span class="toc-text">Tópico</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Produtor"><span class="toc-number">3.</span> <span class="toc-text">Produtor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consumidor"><span class="toc-number">4.</span> <span class="toc-text">Consumidor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Broker"><span class="toc-number">5.</span> <span class="toc-text">Broker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Particao"><span class="toc-number">6.</span> <span class="toc-text">Partição</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Offset"><span class="toc-number">7.</span> <span class="toc-text">Offset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Acknowledge"><span class="toc-number">8.</span> <span class="toc-text">Acknowledge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consumer-Groups"><span class="toc-number">9.</span> <span class="toc-text">Consumer Groups</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&text=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&title=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&is_video=false&description=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Integrando sistemas com Kafka: principais conceitos&body=Check out this article: https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&title=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&title=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&title=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&title=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&name=Integrando sistemas com Kafka: principais conceitos&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/integrando-sistemas-com-kafka-principais-conceitos/&t=Integrando sistemas com Kafka: principais conceitos"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Danilo Soares Frois Cardoso
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

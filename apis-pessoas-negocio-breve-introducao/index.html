@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang=pt>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Faz um tempo que o termo APIs está em constante crescente, seja na internet, eventos presenciais ou prospectos do mercado. Uma rápida busca no Google Trends mostra como o assunto ganhou relevância e p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="APIs para Pessoas de Negócio: uma breve introdução">
+<meta property="og:url" content="https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/index.html">
+<meta property="og:site_name" content="Blog do Frois">
+<meta property="og:description" content="Faz um tempo que o termo APIs está em constante crescente, seja na internet, eventos presenciais ou prospectos do mercado. Uma rápida busca no Google Trends mostra como o assunto ganhou relevância e p">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://danilocardoso.dev/blog/apis-pessoas-negocio-breve-introducao/meeting.jpg">
+<meta property="og:image" content="https://danilocardoso.dev/blog/apis-pessoas-negocio-breve-introducao/rest.png">
+<meta property="og:image" content="https://danilocardoso.dev/blog/apis-pessoas-negocio-breve-introducao/festival.png">
+<meta property="article:published_time" content="2022-11-01T16:56:54.000Z">
+<meta property="article:modified_time" content="2025-01-06T14:11:02.555Z">
+<meta property="article:author" content="Danilo Soares Frois Cardoso">
+<meta property="article:tag" content="apis">
+<meta property="article:tag" content="tecnologia">
+<meta property="article:tag" content="2022">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://danilocardoso.dev/blog/apis-pessoas-negocio-breve-introducao/meeting.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>APIs para Pessoas de Negócio: uma breve introdução</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/blog/o-que-usar-pra-criar-apis/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Seguinte" href="/blog/grandes-esperancas/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
+      <span id="i-top" class="info" style="display:none;">Acima</span>
+      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&text=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&title=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&is_video=false&description=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=APIs para Pessoas de Negócio: uma breve introdução&body=Check out this article: https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&title=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&title=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&title=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&title=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&name=APIs para Pessoas de Negócio: uma breve introdução&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&t=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Porque-conhecer-APIs"><span class="toc-number">1.</span> <span class="toc-text">Porque conhecer APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-sao-APIs"><span class="toc-number">2.</span> <span class="toc-text">O que são APIs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modelo-cliente-servidor"><span class="toc-number">2.1.</span> <span class="toc-text">Modelo cliente-servidor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Requisicoes-e-respostas"><span class="toc-number">2.2.</span> <span class="toc-text">Requisições e respostas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#APIs-nao-guardam-estado"><span class="toc-number">2.3.</span> <span class="toc-text">APIs não guardam estado</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sistema-de-camadas"><span class="toc-number">2.4.</span> <span class="toc-text">Sistema de camadas</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-e-possivel-fazer-com-APIs"><span class="toc-number">3.</span> <span class="toc-text">O que é possível fazer com APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alguns-casos-reais"><span class="toc-number">4.</span> <span class="toc-text">Alguns casos reais</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Postagens-musicais-no-Instagram"><span class="toc-number">4.1.</span> <span class="toc-text">Postagens musicais no Instagram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Twitter-do-Dolar-Bipolar"><span class="toc-number">4.2.</span> <span class="toc-text">Twitter do Dólar Bipolar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stripe-APIs-como-modelo-de-negocio"><span class="toc-number">4.3.</span> <span class="toc-text">Stripe: APIs como modelo de negócio</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Como-aprofundar-no-assunto"><span class="toc-number">5.</span> <span class="toc-text">Como aprofundar no assunto</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        APIs para Pessoas de Negócio: uma breve introdução
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-11-01T16:56:54.000Z" class="dt-published" itemprop="datePublished">2022-11-01</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/2022/" rel="tag">2022</a>, <a class="p-category" href="/blog/tags/apis/" rel="tag">apis</a>, <a class="p-category" href="/blog/tags/tecnologia/" rel="tag">tecnologia</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Faz um tempo que o termo APIs está em constante crescente, seja na internet, eventos presenciais ou prospectos do mercado. Uma rápida busca no <a target="_blank" rel="noopener" href="https://trends.google.com/trends/explore?date=all&geo=BR&q=/m/0z5n">Google Trends</a> mostra como o assunto ganhou relevância e parece que não vai sair de moda em breve. Algumas iniciativas como o <a target="_blank" rel="noopener" href="https://startupi.com.br/open-finance-apis/">Open Finance</a> sendo implementado em escala globa ajudam a explicar o motivo de tantas empresas e pessoas estarem disseminando conteúdo sobre APIs.</p>
+<p>A ideia desse artigo é simplificar a noção do que são APIs, trazendo para uma visão de negócios e não técnica os conceitos que permeiam a criação, utilidade e benefícios no uso de APIs. A ideia é que você, ao final desse texto, saiba quais assuntos são necessários estudar para se aprofundar na temática, além de ter uma ideia clara de como uma API funciona e de como ela pode o conceito pode te atender estrategicamente.</p>
+<img src="/blog/apis-pessoas-negocio-breve-introducao/meeting.jpg" class="">
+
+<h2 id="Porque-conhecer-APIs"><a href="#Porque-conhecer-APIs" class="headerlink" title="Porque conhecer APIs"></a>Porque conhecer APIs</h2><p>APIs são um assunto mega relevante para o contexto de <a target="_blank" rel="noopener" href="https://www.forbes.com/sites/googlecloud/2021/08/10/digital-transformation-youre-doing-it-wrong-if-youre-not-looking-at-apis/?sh=7971a90433da">digitalização e transformação digital</a> que os organizações tem vivido. Para pequenas empresas as APIs podem representar a forma como seu produto é exposto ao mercado, já que potencializam a criação de apps, sistemas e serviços <a target="_blank" rel="noopener" href="https://blogs.cisco.com/cloud/enabling-application-development-velocity-in-an-api-first-world">de forma rápida e padronizada</a>. Para grandes empresas, as <a target="_blank" rel="noopener" href="https://swagger.io/blog/api-strategy/enterprise-api-platform/">plataformas de API</a> podem trazer a mesma agilidade do mercado emergente para o contexto de complexidade das grandes corporações.</p>
+<p>Tangibilizando um pouco mais, as APIs podem ser o motor para a estratégia que papeis como CEO e CTO esperam trazer para as suas equipes. Enquanto PO e analista de negócios, as APIs podem ser um caminho mais simples de trazer informações de banco de dados para seus sistemas internos ou até mesmo se tornar um produto, dependendo da maturidade do seus times técnicos com o assunto.</p>
+<h2 id="O-que-sao-APIs"><a href="#O-que-sao-APIs" class="headerlink" title="O que são APIs"></a>O que são APIs</h2><p>Imagine que você foi a um restaurante e pediu o cardápio. Mesmo que hajam diferentes estilos, cores e formas de apresentar o conteúdo, o conceito de um cardápio não se altera. Seu objetivo é mostrar as opções de pratos que existem no restaurante, agindo como uma <strong>interface</strong> entre os clientes e garçons&#x2F;restaurante. Em tecnologia, o termo interface é utilizado quando temos algum padrão de comunicação para dois sistemas completamente diferentes.</p>
+<p>O termo API é um acrônimo para <em>application programming interface</em>, ou <strong>Interface de Programação de Aplicação</strong> em português. Isso significa que APIs servem para padronizar a comunicação entre dois sistemas diferentes. No caso do restaurante, o cardápio seria uma API. Existe ali um <strong>padrão de comunicação</strong> (preço, nome e composição dos pratos) fornecido pelo restaurante que ajuda o consumidor a fazer suas escolhas. O restaurante não precisa conhecer previamente os gostos do seu consumidor para construir um cardápio, basta seguir os padrões do mercado.</p>
+<blockquote>
+<p>APIs servem para padronizar a comunicação entre dois sistemas diferentes. </p>
+</blockquote>
+<p>Da mesma forma, o cliente não precisa não precisa conhecer todos os pratos antes de ir em um restaurante, já que ele sabe que o cardápio informará aquilo que ele precisa. Com isso estabelecido, precisamos trazer alguns conceitos importantes que permeiam o que caracteriza uma API e a difere de outras formas de comunicação.</p>
+<h3 id="Modelo-cliente-servidor"><a href="#Modelo-cliente-servidor" class="headerlink" title="Modelo cliente-servidor"></a>Modelo cliente-servidor</h3><p>APIs são baseadas na <a target="_blank" rel="noopener" href="https://rockcontent.com/br/blog/http/">protocolo de comunicação HTTP</a>, base da Web 2.0. No HTTP toda comunicação é feita de um cliente a um servidor. No exemplo do restaurante, o consumidor que olha o cardápio é o <strong>cliente</strong> e o restaurante o <strong>servidor</strong>. Nesse modelo de comunicação, todo pedido de informação é chamado de requisição. Ou seja, quando você olha para os pedidos no cardápio, você está vendo os resultados de uma requisição, já que precisou acessar a API - cardápio - para ter acesso às informações.</p>
+<p>A partir do momento que você escolher um prato e comunicar ao garçom, estará fazendo uma nova requisição, dessa vez pedindo um prato. </p>
+<h3 id="Requisicoes-e-respostas"><a href="#Requisicoes-e-respostas" class="headerlink" title="Requisições e respostas"></a>Requisições e respostas</h3><p>Apesar de já fazer parte da explicação anterior, acredito que faça sentido deixar esse ponto um pouco mais específico. Como a comunicação na internet sempre tem um servidor e um solicitante, imagine que toda comunicação será síncrona. Vamos imaginar um exemplo de dois irmãos conversando. Digamos que o irmão mais novo quer saber onde está o seu controle do videogame perguntando para seu irmão mais velho. Nesse exemplo o irmão mais novo é o cliente, que precisa da informação, enquanto o irmão mais velho é o servidor, o que detém - ou não - a informação necessária.</p>
+<p>Para que os dois se comuniquem, é necessário que o irmão mais novo faça uma pergunta. No caso de APIs chamamos isso de requisição. A resposta do irmão, independente do conteúdo, será dada ao irmão mais novo por ser uma comunicação síncrona. Podemos enriquecer esse exemplo posteriormente incluindo os verbos HTTP e os códigos de resposta para um melhor entendimento.</p>
+<h3 id="APIs-nao-guardam-estado"><a href="#APIs-nao-guardam-estado" class="headerlink" title="APIs não guardam estado"></a>APIs não guardam estado</h3><p>Assim como um cardápio não armazena informações sobre o cliente, uma API não salva nenhuma informação que passa por ela, sendo considerada <em>stateless</em>. Além disso, cada requisição é fechada logo depois de ser realizada. Isso significa que cabe às partes - cliente e servidor - guardar os dados caso seja necessário, já que a API é a apenas um protocolo de comunicação. No nosso exemplo do restaurante, o garçom pode guardar o nome da pessoa para um melhor atendimento e irá guardar as informações do pedido para garantir que seja atendido conforme solicitado.</p>
+<h3 id="Sistema-de-camadas"><a href="#Sistema-de-camadas" class="headerlink" title="Sistema de camadas"></a>Sistema de camadas</h3><p>Por mais que o cliente queira pedir agilidade ou que seu prato tenha algo diferente, tudo isso será feito com o garçom, nunca com o cozinheiro ou dono do restaurante. No que tange APIs, isso significa que as camadas de responsabilidade de uma API são sempre bem definidas e separadas. Se é necessário uma autenticação de segurança prévia, será impossível acessar a API antes de haver a autenticação do cliente.</p>
+<img src="/blog/apis-pessoas-negocio-breve-introducao/rest.png" class="">
+
+
+<h2 id="O-que-e-possivel-fazer-com-APIs"><a href="#O-que-e-possivel-fazer-com-APIs" class="headerlink" title="O que é possível fazer com APIs"></a>O que é possível fazer com APIs</h2><p>Agora que já foram trazidos detalhes para entender conceitualmente o que é uma API, trarei alguns exemplos mais próximos do contexto organizacional. Como uma API é uma forma de <em>integrar</em> diferentes sistemas, podemos estabelecer alguns cenários onde as APIs são uma solução:</p>
+<ul>
+<li><strong>Integrar sistema de RH com sistema de onboarding.</strong> Imagine que sua empresa possua uma plataforma de onboarding apartada do sistema de RH. Enquanto o sistema de onboarding traz as primeiras atividades que uma pessoa terá na empresa, o sistema de RH cuida da contratação, documentos e processos relacionados. Para fazer com que esses dois sistemas se falem e troquem informações, podemos usar APIs para fazer essa ponte. Uma API pode ser usada para criar um novo usuário no sistema de onboarding trazendo seus dados básicos provenientes do sistema de RH.</li>
+<li><strong>Exibir determinadas informações no frontend do seu aplicativo.</strong> Caso sua empresa tenha um aplicativo e você queira adicionar informações na tela, para agregar valor ao usuário, APIs são uma das formas de fazer isso. Com uma API você pode trazer a informação que deseja para as telas do app, fazendo com que o usuário não precise usar outro serviço pra obter informações. Um app com estatísticas esportivas pode, por exemplo, mostrar a temperatura das próximas horas para a pessoa decidir se faz um esporte ao ar livre ou não.  </li>
+<li><strong>Criar um produto baseado no conhecimento da sua área que possa ser adquirido por empresas externas.</strong> Imagine que você trabalha fazendo análises de risco de crédito e que criou um passo-a-passo infalível para suas análises. Com uma API, é possível <em>produtificar</em> esse conhecimento e disponibilizar ao mercado. Dessa forma você cria um produto rentável que pode ser adquirido por pessoas e empresas que precisem dessa funcionalidade. A API pode ser embarcada em sistemas já existentes (por exemplo, um CRM) ou você pode criar uma aplicação com telas para ter 100% de controle sobre a experiência do usuário.</li>
+</ul>
+<h2 id="Alguns-casos-reais"><a href="#Alguns-casos-reais" class="headerlink" title="Alguns casos reais"></a>Alguns casos reais</h2><h3 id="Postagens-musicais-no-Instagram"><a href="#Postagens-musicais-no-Instagram" class="headerlink" title="Postagens musicais no Instagram"></a>Postagens musicais no Instagram</h3><p>Se você usa o Instagram com frequência, já deve ter reparado que muita gente faz de vez em quando posts analisando as músicas que escutam pelo Spotify. Alguns posts <a target="_blank" rel="noopener" href="https://techcrunch.com/2022/09/06/lineupsupplys-app-turns-music-festival-posters-into-spotify-playlists/">montam lineups de festivais baseados no que a pessoa mais escuta</a>, outros mostram <a target="_blank" rel="noopener" href="https://www.cnet.com/tech/home-entertainment/supercharge-your-music-streaming-with-these-spotify-wrapped-alikes/">playlists baseadas no humor</a> da pessoa naquele dia. Mas como essas análises são feitas?</p>
+<p>Nesse caso, o site&#x2F;sistema que monta essas artes criativas possui uma inteligência para analisar os dados do Spotify  do usuário. Para ter acesso a esses dados, as APIs do Spotify são usadas. Enquanto o usuário acessa seu Spotify, coloca a senha e permite que os dados sejam usados por aquele site&#x2F;sistema, as APIs do Spotify são acessadas de forma invisível ao usuário, trazendo metadados das músicas ouvidas e permitindo que o desenvolvedor do site&#x2F;sistema tenha uma massa de dados para analisar de forma criativa.</p>
+<img src="/blog/apis-pessoas-negocio-breve-introducao/festival.png" class="">
+<p>Exemplo criativo de posts criados usando APIs do Spotify</p>
+<h3 id="Twitter-do-Dolar-Bipolar"><a href="#Twitter-do-Dolar-Bipolar" class="headerlink" title="Twitter do Dólar Bipolar"></a>Twitter do Dólar Bipolar</h3><p>Existe uma conta bem interessante no Twitter chamada <a target="_blank" rel="noopener" href="https://twitter.com/DolarBipolar">Dólar Bipolar</a>. Nesse perfil é possível saber a cada meia hora se a cotação do dólar subiu ou caiu. E como eles fazem para saber? Existe uma automacão que checa a cotação do dólar de tempos em tempos e a coleta. Essa automação valida se o dado subiu ou caiu e aciona as APIs do Twitter para fazer o post. Simples assim.</p>
+<h3 id="Stripe-APIs-como-modelo-de-negocio"><a href="#Stripe-APIs-como-modelo-de-negocio" class="headerlink" title="Stripe: APIs como modelo de negócio"></a>Stripe: APIs como modelo de negócio</h3><p>Trazendo para um contexto corporativo, talvez a <a target="_blank" rel="noopener" href="https://stripe.com/blog/payment-api-design">Stripe</a> seja o melhor caso de sucesso de uma estratégia de APIs. Em um mundo onde não haviam padrões para processamento de pagamento online, a empresa criou um sistema que era focado na experiência do desenvolvedor, ou seja, tornou o processamento de pagamento algo simples para quem integra e feito 100% com uso de APIs. Com isso a empresa viveu um boom e hoje é considerada referência para quem busca usar APIs como base do seu negócio.</p>
+<p>O mercado de processamento de pagamentos via APIs é um negócio tão lucrativo e aberto que temos um caso de bastante sucesso no Brasil também, a <a target="_blank" rel="noopener" href="https://www.projetodraft.com/pedro-18-e-henrique-19-criaram-sozinhos-uma-empresa-milionaria-a-pagar-me-e-querem-muito-mais/">PagarMe</a>. Hoje os fundadores da empresa tocam a Brex, startup americana focada em cash management para corporações de tecnologia. Isso vem para mostrar como uma boa estratégia no uso de APIs consegue pontecializar os negócios e trazer mais opções de atuação. </p>
+<h2 id="Como-aprofundar-no-assunto"><a href="#Como-aprofundar-no-assunto" class="headerlink" title="Como aprofundar no assunto"></a>Como aprofundar no assunto</h2><p>Minha expectativa é poder trazer mais textos, exemplos e vídeos que te ajudem a entender cada vez mais para que APIs servem, mas enquanto esses conteúdos não saem, vou deixar algumas dicas abaixo:</p>
+<ol>
+<li><strong>Entenda os contratos REST.</strong> Acredito que o primeiro passo num aprofundamento do que são APIs é entender o famoso contrato de uma API. Ele é uma descrição dos campos que compõe a API, de como um desenvolvedor pode usa-la e sobre quais formas de autenticação existem para ela. A partir do contrato haverão vários desdobramentos para entender melhor os conceitos de APIs.</li>
+<li><strong>Conheça os verbos HTTP.</strong> Para uma API ser operacional, existem verbos que definem ações para cada operação feita na API. Na hora de obter um dado usamos um GET, e na hora de criar um novo dado usamos um POST. Apesar de ser intuitivo, vale a pena <a target="_blank" rel="noopener" href="https://www.devmedia.com.br/servicos-restful-verbos-http/37103">conhecer os principais verbos HTTP</a> para ter uma ideia do que pode ser feito com uma API. </li>
+<li><strong>Autenticação e autorização.</strong> APIs são seguras? Sim! Existem diferentes formas de autenticar e autorizar usuários e acessos. Como é um assunto um pouco complexo, acredito que valha a pena ler algum artigo introdutório que mostre alguns <a target="_blank" rel="noopener" href="https://www.bry.com.br/blog/seguranca-de-api/">meios de autorizar usuários</a>, apenas para entender quas mecanismos de segurança existem.</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">Início</a></li>
+        
+          <li><a href="/blog/about/">Sobre</a></li>
+        
+          <li><a href="/blog/archives/">Artigos</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Porque-conhecer-APIs"><span class="toc-number">1.</span> <span class="toc-text">Porque conhecer APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-sao-APIs"><span class="toc-number">2.</span> <span class="toc-text">O que são APIs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modelo-cliente-servidor"><span class="toc-number">2.1.</span> <span class="toc-text">Modelo cliente-servidor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Requisicoes-e-respostas"><span class="toc-number">2.2.</span> <span class="toc-text">Requisições e respostas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#APIs-nao-guardam-estado"><span class="toc-number">2.3.</span> <span class="toc-text">APIs não guardam estado</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sistema-de-camadas"><span class="toc-number">2.4.</span> <span class="toc-text">Sistema de camadas</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-e-possivel-fazer-com-APIs"><span class="toc-number">3.</span> <span class="toc-text">O que é possível fazer com APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alguns-casos-reais"><span class="toc-number">4.</span> <span class="toc-text">Alguns casos reais</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Postagens-musicais-no-Instagram"><span class="toc-number">4.1.</span> <span class="toc-text">Postagens musicais no Instagram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Twitter-do-Dolar-Bipolar"><span class="toc-number">4.2.</span> <span class="toc-text">Twitter do Dólar Bipolar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stripe-APIs-como-modelo-de-negocio"><span class="toc-number">4.3.</span> <span class="toc-text">Stripe: APIs como modelo de negócio</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Como-aprofundar-no-assunto"><span class="toc-number">5.</span> <span class="toc-text">Como aprofundar no assunto</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&text=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&title=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&is_video=false&description=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=APIs para Pessoas de Negócio: uma breve introdução&body=Check out this article: https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&title=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&title=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&title=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&title=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&name=APIs para Pessoas de Negócio: uma breve introdução&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/apis-pessoas-negocio-breve-introducao/&t=APIs para Pessoas de Negócio: uma breve introdução"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Danilo Soares Frois Cardoso
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

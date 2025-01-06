@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang=pt>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="tl;dr: a forma mais fácil de trabalhar com campos de data&#x2F;hora em forms é através de bibliotecas de datepicker. O suporte do HTML5 a campos de data não permite uma rápida implementação cross-brow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trabalhando com campo de data e hora em forms com HTML5">
+<meta property="og:url" content="https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/index.html">
+<meta property="og:site_name" content="Blog do Frois">
+<meta property="og:description" content="tl;dr: a forma mais fácil de trabalhar com campos de data&#x2F;hora em forms é através de bibliotecas de datepicker. O suporte do HTML5 a campos de data não permite uma rápida implementação cross-brow">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://danilocardoso.dev/blog/trabalhando-com-data-hora-forms-html5/0.png">
+<meta property="article:published_time" content="2020-06-26T21:52:01.000Z">
+<meta property="article:modified_time" content="2025-01-06T14:11:02.578Z">
+<meta property="article:author" content="Danilo Soares Frois Cardoso">
+<meta property="article:tag" content="html5">
+<meta property="article:tag" content="frontend">
+<meta property="article:tag" content="vuejs">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://danilocardoso.dev/blog/trabalhando-com-data-hora-forms-html5/0.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Trabalhando com campo de data e hora em forms com HTML5</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/blog/resumao-para-certificacao-az-900/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Seguinte" href="/blog/trabalhando-com-requisicoes-webservice-weblogic/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
+      <span id="i-top" class="info" style="display:none;">Acima</span>
+      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&text=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&title=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&is_video=false&description=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Trabalhando com campo de data e hora em forms com HTML5&body=Check out this article: https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&title=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&title=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&title=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&title=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&name=Trabalhando com campo de data e hora em forms com HTML5&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&t=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Trabalhando com campo de data e hora em forms com HTML5
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-06-26T21:52:01.000Z" class="dt-published" itemprop="datePublished">2020-06-26</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/frontend/" rel="tag">frontend</a>, <a class="p-category" href="/blog/tags/html5/" rel="tag">html5</a>, <a class="p-category" href="/blog/tags/javascript/" rel="tag">javascript</a>, <a class="p-category" href="/blog/tags/vuejs/" rel="tag">vuejs</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p><strong>tl;dr:</strong> a forma mais fácil de trabalhar com campos de data&#x2F;hora em forms é através de bibliotecas de datepicker. O suporte do HTML5 a campos de data não permite uma rápida implementação cross-browser.</p>
+<p>Trabalhar com forms é algo comum na hora de desenvolver telas e recursos para sistemas, e um dos campos que pode dar bastante dor de cabeça são inputs e seus diferentes tipos. Recentemente atuei em um projeto onde era necessário utilizar um campo de data e hora. Na hora de criar o form, usei a <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local">tag datetime-local</a>, que é o novo padrão no HTML5 ao invés do antigo datetime.</p>
+<p>Até aí tudo bem. O problema foi na hora de testar essa solução em dispositivos móveis. A falha ocorreu devido a forma como browsers móveis preenchem o campo data do datetime-local. Ao invés de utilizarem o padrão do HTML5, tanto Chrome como Safari, os <a target="_blank" rel="noopener" href="https://gs.statcounter.com/browser-market-share/mobile/worldwide">dois browsers mais utilizados em smartphones</a> preenchem o campo como texto. Por exemplo, se você selecionar uma data como a de criação deste post, 26 de julho de 2020, ao invés do campo ser preenchido no padrão que você passar, será necessário processar a data recebida para que seja manipulada da maneira correta no backend.</p>
+<p>Mas se você quiser resolver isso no front, o jeito vai ser utilizar uma biblioteca de datepicker. No próprio site de <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local">documentação da Mozilla</a> - uma das principais referências em documentação sobre padrões web - existe uma solução paliativa com Vanilla JS, mas acredito que ela seja muito verbosa caso sua necessidade seja apenas um campo de data&#x2F;hora.</p>
+<p>Como o projeto tinha o framework Vue implementado, a solução foi encontrar uma biblioteca de datepicker que fosse interessante. No meu caso optei pelo <a target="_blank" rel="noopener" href="https://github.com/mariomka/vue-datetime">vue-datetime</a>, excelente solução feita pelo <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/mariojuarez">Mario Juaréz</a>.</p>
+<p>A implementação dela é bem simples, como campos de data e hora deveriam ser. Precisei apenas importar o componente e instanciá-lo com algumas poucas parametrizações. Segue como ficou o resultado abaixo:</p>
+<img src="/blog/trabalhando-com-data-hora-forms-html5/0.png" class="">
+
+<p>Figura 1 - Datepicker com vue-datetime</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">Início</a></li>
+        
+          <li><a href="/blog/about/">Sobre</a></li>
+        
+          <li><a href="/blog/archives/">Artigos</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&text=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&title=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&is_video=false&description=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Trabalhando com campo de data e hora em forms com HTML5&body=Check out this article: https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&title=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&title=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&title=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&title=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&name=Trabalhando com campo de data e hora em forms com HTML5&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/trabalhando-com-data-hora-forms-html5/&t=Trabalhando com campo de data e hora em forms com HTML5"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Danilo Soares Frois Cardoso
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/blog/">Início</a></li><!--
+     --><!--
+       --><li><a href="/blog/about/">Sobre</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">Artigos</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projetos</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
