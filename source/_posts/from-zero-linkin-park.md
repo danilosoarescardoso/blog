@@ -16,9 +16,6 @@ O mais interessante é que mesmo com todas essas características que podemos co
 
 Vale lembrar que a introdução de Emily foi anunciada com nada menos que um show, transmitido ao vivo pela internet além do presencial. 
 
-[![Linkin Park: FROM ZERO (Livestream)](https://img.youtube.com/vi/IL1nlWOciL0/0.jpg)](https://www.youtube.com/watch?v=IL1nlWOciL0&ab_channel=LinkinPark)
-
-
 ## As músicas
 *The Emptiness Machine* foi a primeira música lançada pela banda, como single. Logo fez muito sucesso por mostrar que a banda estava alternando entre a musicalidade dos discos mais recentes, mas trazendo elementos de quando tiverem mais sucessos, nos idos dos anos 2000. 
 
