@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://danilocardoso.dev/cronicamente-online/</loc>
+    
+    <lastmod>2025-01-08</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://danilocardoso.dev/about/index.html</loc>
     
     <lastmod>2025-01-06</lastmod>
@@ -256,7 +263,7 @@
 
   <url>
     <loc>https://danilocardoso.dev/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -264,357 +271,364 @@
   
   <url>
     <loc>https://danilocardoso.dev/tags/api-first/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/api-design-first/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/apis/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/2023/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/tecnologia/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/desenvolvimento/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/2022/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/produtos-digitais/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/2024/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/open-apis/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/2018/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/seguranca/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/oauth/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/jwt/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/hmac/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/arquitetura/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/infra/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/inteligencia-artificial/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/chatGPT/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/musica/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/redes-sociais/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/facebook/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/login/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/soft-skills/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/newsletter/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/amenidades/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/eventos/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/CDN/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/cache/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/literatura/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/kafka/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/APIs/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/microservicos/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/pandemia/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/inovacao/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/2019/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/vida-pessoal/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/carreira/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/Londrina/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/weblogic/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/webservices/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/SOAP/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/xml/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/java/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/html5/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/frontend/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/vuejs/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/javascript/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/Open-APIs/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/API-REST/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://danilocardoso.dev/tags/backend/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://danilocardoso.dev/tags/2025/</loc>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -623,7 +637,7 @@
   
   <url>
     <loc>https://danilocardoso.dev/categories/gallery/</loc>
-    <lastmod>2025-01-06</lastmod>
+    <lastmod>2025-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
