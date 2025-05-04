@@ -7,7 +7,7 @@ author: Danilo Soares Frois Cardoso
 language: pt-br
 timezone: null
 url: 'https://danilocardoso.dev'
-root: /blog
+root: /
 permalink: ':title/'
 permalink_defaults: null
 source_dir: source
