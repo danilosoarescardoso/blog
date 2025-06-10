@@ -38,7 +38,7 @@ index_generator:
 default_category: uncategorized
 category_map: null
 tag_map: null
-date_format: YYYY-MM-DD
+date_format: DD-MM-YYYY
 time_format: 'HH:mm:ss'
 per_page: 10
 pagination_dir: page
