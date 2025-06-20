@@ -1,171 +1,163 @@
 <!DOCTYPE html>
-<html lang=pt>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Sempre que trabalho com uma tecnologia, gosto de ler mais sobre ela e fazer experimentos. Quando trabalhamos com desenvolvimento, isso acaba sendo muito comum, aprender com a prática e o dia-a-dia. Um">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Testando requisições a Webservices SOAP no Weblogic">
-<meta property="og:url" content="https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/index.html">
-<meta property="og:site_name" content="Blog do Frois">
-<meta property="og:description" content="Sempre que trabalho com uma tecnologia, gosto de ler mais sobre ela e fazer experimentos. Quando trabalhamos com desenvolvimento, isso acaba sendo muito comum, aprender com a prática e o dia-a-dia. Um">
-<meta property="og:locale" content="pt_BR">
-<meta property="og:image" content="https://danilocardoso.dev/blog/trabalhando-com-requisicoes-webservice-weblogic/primeira.png">
-<meta property="og:image" content="https://danilocardoso.dev/blog/trabalhando-com-requisicoes-webservice-weblogic/segunda.png">
-<meta property="og:image" content="https://danilocardoso.dev/blog/trabalhando-com-requisicoes-webservice-weblogic/terceira.png">
-<meta property="article:published_time" content="2020-04-26T05:02:27.000Z">
-<meta property="article:modified_time" content="2025-01-06T14:11:02.578Z">
-<meta property="article:author" content="Danilo Soares Frois Cardoso">
-<meta property="article:tag" content="weblogic">
-<meta property="article:tag" content="webservices">
-<meta property="article:tag" content="SOAP">
-<meta property="article:tag" content="xml">
-<meta property="article:tag" content="java">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://danilocardoso.dev/blog/trabalhando-com-requisicoes-webservice-weblogic/primeira.png">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>Testando requisições a Webservices SOAP no Weblogic</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Danilo Soares Frois Cardoso">
 
 
-    <!-- Umami Analytics -->
+    <meta name="subtitle" content="Desenvolvimento Web e amenidades">
 
 
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
+    <meta name="description" content="Aqui falo sobre tecnologia e muitas amenidades.">
 
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-<meta name="generator" content="Hexo 5.4.2"></head>
 
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Início</a></li><!--
-     --><!--
-       --><li><a href="/about/">Sobre</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://linkedin.com/in/danilosoarescardoso">Fale Comigo</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Post Anterior" href="/trabalhando-com-data-hora-forms-html5/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Post Seguinte" href="/desenvolvimento-nao-e-apenas-sobre-codigo/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Acima" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Compartihar Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
-      <span id="i-next" class="info" style="display:none;">Post Seguinte</span>
-      <span id="i-top" class="info" style="display:none;">Acima</span>
-      <span id="i-share" class="info" style="display:none;">Compartihar Post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&text=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&title=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&is_video=false&description=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Testando requisições a Webservices SOAP no Weblogic&body=Check out this article: https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&title=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&title=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&title=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&title=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&name=Testando requisições a Webservices SOAP no Weblogic&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&t=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
 
+
+
+<title>Testando requisições a Webservices SOAP no Weblogic | Blog do Frois</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
     </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Exemplificando"><span class="toc-number">1.</span> <span class="toc-text">Exemplificando</span></a></li></ol>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Blog do Frois.
+          
+        </a>
       </div>
-    
-  </span>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Posts</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        Testando requisições a Webservices SOAP no Weblogic
-    </h1>
+<script src="/js/menu.js"></script>
 
 
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Danilo Soares Frois Cardoso</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2020-04-26T05:02:27.000Z" class="dt-published" itemprop="datePublished">26-04-2020</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/SOAP/" rel="tag">SOAP</a>, <a class="p-category" href="/tags/java/" rel="tag">java</a>, <a class="p-category" href="/tags/weblogic/" rel="tag">weblogic</a>, <a class="p-category" href="/tags/webservices/" rel="tag">webservices</a>, <a class="p-category" href="/tags/xml/" rel="tag">xml</a>
-    </div>
-
-
-    </div>
-  </header>
   
-
-  <div class="content e-content" itemprop="articleBody">
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/weblogic/">
+                            weblogic
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/webservices/">
+                            webservices
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/SOAP/">
+                            SOAP
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/xml/">
+                            xml
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/java/">
+                            java
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Testando requisições a Webservices SOAP no Weblogic
+            
+            
+        </div>
+        <span class="post-date">
+            abr 26, 2020
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
     <p>Sempre que trabalho com uma tecnologia, gosto de ler mais sobre ela e fazer experimentos. Quando trabalhamos com desenvolvimento, isso acaba sendo muito comum, aprender com a prática e o dia-a-dia. Um dos exemplos desse aprendizado que adquiri nos últimos meses foi trabalhando com algumas tecnologias novas na carreira.</p>
 <p>Na área que sou responsável na TCS, uma das aplicações que cuidamos é feita em Java e roda no <a target="_blank" rel="noopener" href="https://www.oracle.com/br/middleware/technologies/weblogic.html">Weblogic</a>, servidor mantido pela Oracle para sistemas Java EE. Algo muito interessante que tenho me aprofundado nos últimos meses mexendo com Weblogic é no teste de web services que ele traz como padrão, chamado Web Services Test Client. </p>
 <p>Essa ferramenta é muito útil porque permite que testes sejam feitos de maneira rápida, sem ter que criar mocks no SoapUI, por exemplo. Segundo a documentação oficial, o Web Services Test Client serve para:</p>
@@ -192,139 +184,65 @@
 <p>Vale ressaltar que existem outras aplicações que trazem o mesmo tipo de funcionalidade, como o SoapUI. A diferença é que com essa ferramenta você ganha um pouco mais de agilidade por já ser um recurso implementado no Weblogic, além de ter mais uma opção para as horas em que múltiplos testes são necessários.</p>
 <p>Caso tenha alguma sugestão ou dúvida, só me enviar nos comentários ou por mensagem! </p>
 
-  </div>
-</article>
+</div> 
 
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Início</a></li>
-        
-          <li><a href="/about/">Sobre</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://linkedin.com/in/danilosoarescardoso">Fale Comigo</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Exemplificando"><span class="toc-number">1.</span> <span class="toc-text">Exemplificando</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&text=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&title=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&is_video=false&description=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Testando requisições a Webservices SOAP no Weblogic&body=Check out this article: https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&title=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&title=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&title=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&title=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&name=Testando requisições a Webservices SOAP no Weblogic&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://danilocardoso.dev/trabalhando-com-requisicoes-webservice-weblogic/&t=Testando requisições a Webservices SOAP no Weblogic"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartilhar</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/trabalhando-com-data-hora-forms-html5/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/desenvolvimento-nao-e-apenas-sobre-codigo/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
+    
+      <div class="post-comment">
+
+     
+
+     
     
     
-    2016-2025
-    Danilo Soares Frois Cardoso
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Início</a></li><!--
-     --><!--
-       --><li><a href="/about/">Sobre</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://linkedin.com/in/danilosoarescardoso">Fale Comigo</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
 
     </div>
-    <!-- styles -->
 
+    
+    
 
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
+  </body>
 </html>
